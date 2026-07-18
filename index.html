@@ -1,0 +1,5846 @@
+<!doctype html>
+<html lang="kk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>10-вариант | Магистратура тесті</title>
+
+<style>
+:root{
+  --bg:#f6f7fb;
+  --card:#ffffff;
+  --text:#172033;
+  --muted:#667085;
+  --line:#e5e7eb;
+  --main:#4f46e5;
+  --main2:#7c3aed;
+  --good:#16a34a;
+  --bad:#dc2626;
+  --warning:#b42318;
+  --shadow:0 14px 36px rgba(15,23,42,.08);
+  --radius:22px;
+}
+
+*{
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+}
+
+body.lang-kk .ru{
+  display:none!important;
+}
+
+body.lang-ru .kk{
+  display:none!important;
+}
+
+.wrap{
+  width:min(1180px,calc(100% - 28px));
+  margin:0 auto;
+}
+
+.topbar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+  flex-wrap:wrap;
+  padding:14px 0;
+}
+
+.brand{
+  font-size:18px;
+  font-weight:950;
+}
+
+.langSwitch{
+  display:flex;
+  gap:8px;
+}
+
+.langBtn{
+  border:1px solid var(--line);
+  background:#fff;
+  color:var(--text);
+  border-radius:13px;
+  padding:9px 15px;
+  font-weight:900;
+  cursor:pointer;
+}
+
+.langBtn.active{
+  background:var(--main);
+  color:#fff;
+  border-color:var(--main);
+}
+
+.hero{
+  background:linear-gradient(135deg,#ffffff,#eef2ff);
+  border:1px solid var(--line);
+  border-radius:30px;
+  box-shadow:var(--shadow);
+  padding:26px;
+}
+
+.warning{
+  margin-bottom:16px;
+  padding:14px;
+  border:2px solid #fecaca;
+  border-radius:18px;
+  background:#fff1f2;
+  color:var(--warning);
+  text-align:center;
+  font-weight:1000;
+  font-size:clamp(17px,3.2vw,28px);
+  line-height:1.25;
+  text-transform:uppercase;
+}
+
+h1{
+  margin:0;
+  font-size:clamp(29px,5vw,52px);
+  line-height:1.05;
+  letter-spacing:-.04em;
+}
+
+h2{
+  margin:24px 0 12px;
+  font-size:clamp(24px,3.5vw,38px);
+}
+
+h3{
+  margin:0 0 12px;
+  font-size:22px;
+}
+
+.lead{
+  color:#475467;
+  line-height:1.7;
+}
+
+/* Кішкентай жарнама / Небольшая реклама */
+.miniAd{
+  margin-top:18px;
+  padding:12px 14px;
+  border:1px solid #dbe4ff;
+  border-radius:16px;
+  background:#f8faff;
+  font-size:14px;
+  line-height:1.55;
+  color:#344054;
+}
+
+.miniAdTitle{
+  font-weight:950;
+  color:#3448a8;
+  margin-bottom:3px;
+}
+
+.miniAdPrices{
+  display:flex;
+  gap:14px;
+  flex-wrap:wrap;
+  margin-top:5px;
+  font-weight:900;
+  color:#172033;
+}
+
+.navCards{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
+  margin-top:18px;
+}
+
+.navCard{
+  display:block;
+  padding:15px;
+  border:1px solid var(--line);
+  border-radius:18px;
+  background:#fff;
+  color:var(--text);
+  text-decoration:none;
+  box-shadow:0 8px 22px rgba(79,70,229,.09);
+}
+
+.navCard strong{
+  display:block;
+  font-size:17px;
+}
+
+.navCard small{
+  display:block;
+  margin-top:5px;
+  color:var(--muted);
+}
+
+.card{
+  margin:16px 0;
+  padding:20px;
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  background:var(--card);
+  box-shadow:var(--shadow);
+}
+
+.q{
+  margin:14px 0;
+  padding:15px;
+  border:1px solid var(--line);
+  border-radius:18px;
+  background:#fff;
+}
+
+.qt{
+  margin:0 0 12px;
+  font-weight:900;
+  line-height:1.55;
+}
+
+.opts{
+  display:grid;
+  gap:8px;
+}
+
+.op{
+  display:flex;
+  align-items:flex-start;
+  gap:9px;
+  padding:11px 12px;
+  border:1px solid #edf0f3;
+  border-radius:14px;
+  background:#f9fafb;
+  cursor:pointer;
+  line-height:1.5;
+}
+
+.op input{
+  margin-top:4px;
+}
+
+.op.good{
+  border-color:#86efac;
+  background:#dcfce7;
+  color:#14532d;
+  font-weight:900;
+}
+
+.op.bad{
+  border-color:#fca5a5;
+  background:#fee2e2;
+  color:#7f1d1d;
+}
+
+.q.correct{
+  border-color:#86efac;
+  background:#f0fdf4;
+}
+
+.q.wrong{
+  border-color:#fca5a5;
+  background:#fff1f2;
+}
+
+.exp{
+  display:none;
+  margin-top:12px;
+  padding:13px;
+  border:1px solid #e4eaf2;
+  border-radius:15px;
+  background:#f8fafc;
+}
+
+.q.show .exp{
+  display:block;
+}
+
+.steps{
+  margin:8px 0 0;
+  padding-left:22px;
+}
+
+.steps li{
+  margin:7px 0;
+  line-height:1.6;
+}
+
+.actions{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-top:15px;
+}
+
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  border:0;
+  border-radius:14px;
+  padding:11px 16px;
+  background:linear-gradient(135deg,var(--main),var(--main2));
+  color:#fff;
+  font-weight:950;
+  cursor:pointer;
+}
+
+.btn.secondary{
+  border:1px solid var(--line);
+  background:#fff;
+  color:var(--text);
+}
+
+.result{
+  margin-top:14px;
+  font-size:18px;
+  font-weight:950;
+}
+
+.audioBox,
+.textBlock{
+  margin:15px 0;
+  padding:15px;
+  border:1px solid #e4eaf2;
+  border-radius:18px;
+  background:#fbfdff;
+}
+
+audio{
+  display:block;
+  width:100%;
+  margin:12px 0;
+}
+
+.tabs{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:8px;
+  margin:12px 0;
+}
+
+.tab{
+  border:1px solid var(--line);
+  border-radius:13px;
+  padding:10px;
+  background:#fff;
+  color:var(--text);
+  font-weight:900;
+  cursor:pointer;
+}
+
+.tab.active{
+  background:var(--main);
+  color:#fff;
+  border-color:var(--main);
+}
+
+.tabContent{
+  display:none;
+  padding:15px;
+  border:1px solid #e4eaf2;
+  border-radius:16px;
+  background:#fff;
+  line-height:1.75;
+}
+
+.tabContent.active{
+  display:block;
+}
+
+.vocabGrid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:10px;
+}
+
+.vocabItem{
+  padding:10px;
+  border:1px solid var(--line);
+  border-radius:13px;
+  background:#fff;
+}
+
+.svgBox{
+  display:flex;
+  justify-content:center;
+  overflow:auto;
+  margin:12px 0;
+  padding:12px;
+  border:1px solid #e4eaf2;
+  border-radius:18px;
+  background:#fbfdff;
+}
+
+svg{
+  max-width:100%;
+  height:auto;
+}
+
+.tbl{
+  width:100%;
+  margin:12px 0;
+  border-collapse:collapse;
+  background:#fff;
+}
+
+.tbl th,
+.tbl td{
+  padding:9px;
+  border:1px solid #cbd5e1;
+  text-align:center;
+}
+
+.overall{
+  margin:20px 0 42px;
+  padding:20px;
+  border-radius:24px;
+  background:#111827;
+  color:#fff;
+}
+
+.overall .lead{
+  color:#cbd5e1;
+}
+
+.hidden{
+  display:none!important;
+}
+
+@media(max-width:760px){
+  .navCards,
+  .vocabGrid{
+    grid-template-columns:1fr;
+  }
+
+  .tabs{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .hero{
+    padding:19px;
+  }
+
+  .card{
+    padding:15px;
+  }
+}
+</style>
+</head>
+
+<body class="lang-kk">
+
+<header class="wrap topbar">
+  <div class="brand">
+    <span class="kk">10-вариант | Магистратура тесті</span>
+    <span class="ru">10-вариант | Тест для магистратуры</span>
+  </div>
+
+  <div class="langSwitch">
+    <button class="langBtn active" type="button" data-lang="kk">KZ</button>
+    <button class="langBtn" type="button" data-lang="ru">RU</button>
+  </div>
+</header>
+
+<main class="wrap">
+
+<section class="hero">
+
+  <div class="warning">
+    ❌‼️ САТУҒА ЖӘНЕ ТАРАТУҒА БОЛМАЙДЫ. ТЕГІН САЙТ
+  </div>
+
+  <h1>
+    <span class="kk">10-вариант: ТГО және ағылшын тілі</span>
+    <span class="ru">10-вариант: ТГО и английский язык</span>
+  </h1>
+
+  <p class="lead">
+    <span class="kk">
+      Сыни ойлау, аналитикалық ойлау және ағылшын тілі бойынша интерактивті тест.
+    </span>
+
+    <span class="ru">
+      Интерактивный тест по критическому мышлению, аналитическому мышлению и английскому языку.
+    </span>
+  </p>
+
+  <div class="miniAd">
+    <div class="miniAdTitle">
+      <span class="kk">Пробный тесттер</span>
+      <span class="ru">Пробные тесты</span>
+    </div>
+
+    <div>
+      <span class="kk">
+        Тест-орталық материалдары бойынша 6 өзекті нұсқа:
+        <b>ТГО + Ағылшын тілі</b>
+      </span>
+
+      <span class="ru">
+        6 актуальных вариантов по материалам тест-центра:
+        <b>ТГО + Английский язык</b>
+      </span>
+    </div>
+
+    <div class="miniAdPrices">
+      <span>
+        <span class="kk">Бірге — 3000 тг</span>
+        <span class="ru">Вместе — 3000 тг</span>
+      </span>
+
+      <span>
+        <span class="kk">Бөлек — 1500 тг</span>
+        <span class="ru">По отдельности — 1500 тг</span>
+      </span>
+    </div>
+  </div>
+
+  <div class="navCards">
+
+    <a class="navCard" href="#critical">
+      <strong>
+        <span class="kk">Сыни ойлау</span>
+        <span class="ru">Критическое мышление</span>
+      </strong>
+      <small>1–15</small>
+    </a>
+
+    <a class="navCard" href="#analytical">
+      <strong>
+        <span class="kk">Аналитикалық ойлау</span>
+        <span class="ru">Аналитическое мышление</span>
+      </strong>
+      <small>
+        <span class="kk">KZ жеке тест</span>
+        <span class="ru">Отдельный тест RU</span>
+      </small>
+    </a>
+
+    <a class="navCard" href="#english">
+      <strong>
+        <span class="kk">Ағылшын тілі</span>
+        <span class="ru">Английский язык</span>
+      </strong>
+      <small>Listening 1–16 · Grammar 17–34 · Reading 35–50</small>
+    </a>
+
+  </div>
+</section>
+
+<section id="critical">
+  <h2>
+    <span class="kk">Сыни ойлау</span>
+    <span class="ru">Критическое мышление</span>
+  </h2>
+
+  <div class="card" data-test="critical">
+    <h3>1–15</h3>
+
+    <div id="criticalQuestions"></div>
+
+    <div class="actions">
+      <button class="btn" type="button" onclick="checkTest('critical')">
+        <span class="kk">Нәтижені көрсету</span>
+        <span class="ru">Показать результат</span>
+      </button>
+
+      <button class="btn secondary" type="button" onclick="resetTest('critical')">
+        <span class="kk">Қайта өту</span>
+        <span class="ru">Пройти заново</span>
+      </button>
+    </div>
+
+    <div class="result" id="criticalResult"></div>
+  </div>
+</section>
+
+<section id="analytical">
+  <h2>
+    <span class="kk">Аналитикалық ойлау</span>
+    <span class="ru">Аналитическое мышление</span>
+  </h2>
+
+  <div class="card" data-test="analytical">
+    <div id="analyticalQuestions"></div>
+
+    <div class="actions">
+      <button class="btn" type="button" onclick="checkTest('analytical')">
+        <span class="kk">Нәтижені көрсету</span>
+        <span class="ru">Показать результат</span>
+      </button>
+
+      <button class="btn secondary" type="button" onclick="resetTest('analytical')">
+        <span class="kk">Қайта өту</span>
+        <span class="ru">Пройти заново</span>
+      </button>
+    </div>
+
+    <div class="result" id="analyticalResult"></div>
+  </div>
+</section>
+
+<section id="english">
+  <h2>
+    <span class="kk">Ағылшын тілі</span>
+    <span class="ru">Английский язык</span>
+  </h2>
+
+  <div id="englishBlock"></div>
+</section>
+
+<section class="overall">
+  <h2>
+    <span class="kk">Жалпы нәтиже</span>
+    <span class="ru">Общий результат</span>
+  </h2>
+
+  <p class="lead">
+    <span class="kk">
+      Барлық бөлімді тексергеннен кейін жалпы балды көріңіз.
+    </span>
+
+    <span class="ru">
+      После проверки всех разделов посмотрите общий балл.
+    </span>
+  </p>
+
+  <button class="btn" type="button" onclick="showOverall()">
+    <span class="kk">Жалпы балды көрсету</span>
+    <span class="ru">Показать общий балл</span>
+  </button>
+
+  <div class="result" id="overallResult"></div>
+</section>
+
+</main>
+
+<script>
+const state = {
+  scores:{
+    critical:null,
+    analytical:null,
+    englishListening:null,
+    englishGrammar:null,
+    englishReading:null
+  }
+};
+
+const letters = ["A","B","C","D","E","F","G","H"];
+
+function currentLang(){
+  return document.body.classList.contains("lang-ru") ? "ru" : "kk";
+}
+
+function t(value){
+  if(typeof value === "string"){
+    return value;
+  }
+
+  return value?.[currentLang()] ?? value?.kk ?? value?.ru ?? "";
+}
+
+function setLang(lang){
+  document.body.classList.toggle("lang-kk",lang === "kk");
+  document.body.classList.toggle("lang-ru",lang === "ru");
+  document.documentElement.lang = lang;
+
+  document.querySelectorAll(".langBtn").forEach(button=>{
+    button.classList.toggle("active",button.dataset.lang === lang);
+  });
+
+  rerenderAll();
+}
+
+document.querySelectorAll(".langBtn").forEach(button=>{
+  button.addEventListener("click",()=>{
+    setLang(button.dataset.lang);
+  });
+});
+
+function renderQuestion(testKey,q){
+  return `
+    <div class="q" data-id="${q.id}" data-answer="${q.answer}">
+      <p class="qt">${q.id}. ${t(q.question)}</p>
+
+      ${q.figure ? t(q.figure) : ""}
+      ${q.extra ? t(q.extra) : ""}
+
+      <div class="opts">
+        ${q.options.map((option,index)=>`
+          <label class="op" data-value="${letters[index]}">
+            <input
+              type="radio"
+              name="${testKey}_${q.id}"
+              value="${letters[index]}"
+            >
+
+            <span>
+              <b>${letters[index]})</b>
+              ${t(option)}
+            </span>
+          </label>
+        `).join("")}
+      </div>
+
+      <div class="exp">
+        <b>
+          <span class="kk">Түсіндірме</span>
+          <span class="ru">Объяснение</span>
+        </b>
+
+        <ol class="steps">
+          ${(currentLang() === "kk"
+            ? q.explain.kk
+            : q.explain.ru
+          ).map(step=>`<li>${step}</li>`).join("")}
+        </ol>
+      </div>
+    </div>
+  `;
+}
+
+function checkTest(testKey){
+  const card = document.querySelector(`[data-test="${testKey}"]`);
+
+  if(!card){
+    return;
+  }
+
+  const questions = card.querySelectorAll(".q");
+  let correct = 0;
+
+  questions.forEach(question=>{
+    const answer = question.dataset.answer;
+    const selected = question.querySelector("input:checked");
+
+    question.classList.add("show");
+    question.classList.remove("correct","wrong");
+
+    question.querySelectorAll(".op").forEach(option=>{
+      option.classList.remove("good","bad");
+
+      if(option.dataset.value === answer){
+        option.classList.add("good");
+      }
+    });
+
+    if(selected && selected.value === answer){
+      correct++;
+      question.classList.add("correct");
+    }else{
+      question.classList.add("wrong");
+
+      if(selected){
+        selected.closest(".op").classList.add("bad");
+      }
+    }
+  });
+
+  state.scores[testKey] = {
+    correct,
+    total:questions.length
+  };
+
+  const result = document.getElementById(`${testKey}Result`);
+
+  if(result){
+    result.textContent = currentLang() === "kk"
+      ? `Нәтиже: ${correct} / ${questions.length}`
+      : `Результат: ${correct} / ${questions.length}`;
+  }
+}
+
+function resetTest(testKey){
+  const card = document.querySelector(`[data-test="${testKey}"]`);
+
+  if(!card){
+    return;
+  }
+
+  card.querySelectorAll("input").forEach(input=>{
+    input.checked = false;
+  });
+
+  card.querySelectorAll(".q").forEach(question=>{
+    question.classList.remove("show","correct","wrong");
+  });
+
+  card.querySelectorAll(".op").forEach(option=>{
+    option.classList.remove("good","bad");
+  });
+
+  const result = document.getElementById(`${testKey}Result`);
+
+  if(result){
+    result.textContent = "";
+  }
+
+  state.scores[testKey] = null;
+}
+
+function showOverall(){
+  let correct = 0;
+  let total = 0;
+
+  Object.values(state.scores).forEach(score=>{
+    if(score){
+      correct += score.correct;
+      total += score.total;
+    }
+  });
+
+  document.getElementById("overallResult").textContent =
+    currentLang() === "kk"
+      ? `Жалпы балл: ${correct} / ${total}`
+      : `Общий балл: ${correct} / ${total}`;
+}
+  function compareTable3(){
+  return {
+    kk:`
+      <table class="tbl">
+        <tr>
+          <th>A</th>
+          <th>B</th>
+        </tr>
+        <tr>
+          <td>20 санының бөлгіштерінің саны</td>
+          <td>20 санының 130-дан кіші еселіктерінің саны</td>
+        </tr>
+      </table>
+    `,
+    ru:`
+      <table class="tbl">
+        <tr>
+          <th>A</th>
+          <th>B</th>
+        </tr>
+        <tr>
+          <td>Количество делителей числа 20</td>
+          <td>Количество чисел, кратных 20 и меньших 130</td>
+        </tr>
+      </table>
+    `
+  };
+}
+
+function compareTable8(){
+  return {
+    kk:`
+      <table class="tbl">
+        <tr>
+          <th colspan="2">
+            4x + 3y = 17<br>
+            5x − 2 = 4
+          </th>
+        </tr>
+        <tr>
+          <th>A шамасы</th>
+          <th>B шамасы</th>
+        </tr>
+        <tr>
+          <td>x</td>
+          <td>y</td>
+        </tr>
+      </table>
+    `,
+    ru:`
+      <table class="tbl">
+        <tr>
+          <th colspan="2">
+            4x + 3y = 17<br>
+            5x − 2 = 4
+          </th>
+        </tr>
+        <tr>
+          <th>Величина A</th>
+          <th>Величина B</th>
+        </tr>
+        <tr>
+          <td>x</td>
+          <td>y</td>
+        </tr>
+      </table>
+    `
+  };
+}
+
+function compareTable9(){
+  return {
+    kk:`
+      <table class="tbl">
+        <tr>
+          <th colspan="2">■ = 2</th>
+        </tr>
+        <tr>
+          <th>A шамасы</th>
+          <th>B шамасы</th>
+        </tr>
+        <tr>
+          <td>(■<sup>2</sup>)<sup>3</sup></td>
+          <td>(■<sup>3</sup>)<sup>2</sup></td>
+        </tr>
+      </table>
+    `,
+    ru:`
+      <table class="tbl">
+        <tr>
+          <th colspan="2">■ = 2</th>
+        </tr>
+        <tr>
+          <th>Величина A</th>
+          <th>Величина B</th>
+        </tr>
+        <tr>
+          <td>(■<sup>2</sup>)<sup>3</sup></td>
+          <td>(■<sup>3</sup>)<sup>2</sup></td>
+        </tr>
+      </table>
+    `
+  };
+}
+
+function cubeSectionFigure(){
+  const figure = `
+    <div class="svgBox">
+      <svg width="330" height="245" viewBox="0 0 330 245"
+           role="img" aria-label="Cube section">
+
+        <polygon
+          points="75,65 205,65 255,105 125,105"
+          fill="#eef2ff"
+          stroke="#334155"
+          stroke-width="2"
+        />
+
+        <polygon
+          points="75,65 125,105 125,205 75,165"
+          fill="#f8fafc"
+          stroke="#334155"
+          stroke-width="2"
+        />
+
+        <polygon
+          points="125,105 255,105 255,205 125,205"
+          fill="#ffffff"
+          stroke="#334155"
+          stroke-width="2"
+        />
+
+        <line
+          x1="125"
+          y1="105"
+          x2="255"
+          y2="205"
+          stroke="#4f46e5"
+          stroke-width="4"
+        />
+
+        <line
+          x1="125"
+          y1="205"
+          x2="255"
+          y2="105"
+          stroke="#94a3b8"
+          stroke-width="2"
+          stroke-dasharray="6 5"
+        />
+
+        <text x="108" y="101" font-size="16" font-weight="800">A</text>
+        <text x="258" y="108" font-size="16" font-weight="800">B</text>
+        <text x="167" y="93" font-size="15" font-weight="800">AB = 2 см</text>
+      </svg>
+    </div>
+  `;
+
+  return {
+    kk:figure,
+    ru:figure
+  };
+}
+
+function perpendicularGraph(){
+  const graph = `
+    <div class="svgBox">
+      <svg width="440" height="290" viewBox="0 0 440 290"
+           role="img" aria-label="Perpendicular lines graph">
+
+        <line x1="55" y1="235" x2="395" y2="235"
+              stroke="#111827" stroke-width="2"/>
+
+        <line x1="205" y1="260" x2="205" y2="30"
+              stroke="#111827" stroke-width="2"/>
+
+        <polygon points="395,235 384,229 384,241" fill="#111827"/>
+        <polygon points="205,30 199,42 211,42" fill="#111827"/>
+
+        <text x="400" y="240" font-size="15">x</text>
+        <text x="213" y="38" font-size="15">y</text>
+        <text x="211" y="253" font-size="14">0</text>
+
+        <line x1="85" y1="65" x2="370" y2="225"
+              stroke="#64748b" stroke-width="3"/>
+
+        <line x1="150" y1="255" x2="285" y2="35"
+              stroke="#4f46e5" stroke-width="3"/>
+
+        <text x="102" y="60" font-size="16" font-weight="800">m</text>
+        <text x="285" y="51" font-size="16" font-weight="800">l</text>
+
+        <text x="285" y="190" font-size="14">
+          y = −0.5x + 4
+        </text>
+      </svg>
+    </div>
+  `;
+
+  return {
+    kk:graph,
+    ru:graph
+  };
+}
+
+const criticalQuestions = [
+  {
+    id:1,
+    answer:"A",
+
+    question:{
+      kk:"Банкте жылдық мөлшерлемесі 12 пайыз болатын 50000 теңге салынған. Депозитке салынған ақша 3 айдан кейін қанша болатынын есептеңіз.",
+      ru:"В банк положили 50 000 тенге под 12% годовых. Рассчитайте, какая сумма будет на депозите через 3 месяца."
+    },
+
+    options:[
+      {kk:"51500 теңге",ru:"51500 тенге"},
+      {kk:"64000 теңге",ru:"64000 тенге"},
+      {kk:"52000 теңге",ru:"52000 тенге"},
+      {kk:"50500 теңге",ru:"50500 тенге"},
+      {kk:"54500 теңге",ru:"54500 тенге"}
+    ],
+
+    explain:{
+      kk:[
+        "Бір жылдық пайыз: 50000 · 0,12 = 6000 теңге.",
+        "3 ай — жылдың төрттен бірі: 6000 · 3/12 = 1500 теңге.",
+        "Жалпы сома: 50000 + 1500 = 51500 теңге."
+      ],
+
+      ru:[
+        "Проценты за один год: 50000 · 0,12 = 6000 тенге.",
+        "3 месяца составляют четверть года: 6000 · 3/12 = 1500 тенге.",
+        "Итоговая сумма: 50000 + 1500 = 51500 тенге."
+      ]
+    }
+  },
+
+  {
+    id:2,
+    answer:"A",
+
+    question:{
+      kk:"Теңсіздікті қанағаттандыратын санды таңдаңыз: (x + 1)(x + 3) ≥ (x − 2)(x − 4).",
+      ru:"Выберите число, удовлетворяющее неравенству: (x + 1)(x + 3) ≥ (x − 2)(x − 4)."
+    },
+
+    options:[
+      {kk:"1",ru:"1"},
+      {kk:"−2",ru:"−2"},
+      {kk:"−3",ru:"−3"},
+      {kk:"0",ru:"0"},
+      {kk:"Жауабы жоқ",ru:"Ответа нет"}
+    ],
+
+    explain:{
+      kk:[
+        "Жақшаларды ашамыз: x² + 4x + 3 ≥ x² − 6x + 8.",
+        "10x ≥ 5.",
+        "x ≥ 1/2.",
+        "Берілген нұсқалардың ішінде теңсіздікті қанағаттандыратын сан — 1."
+      ],
+
+      ru:[
+        "Раскрываем скобки: x² + 4x + 3 ≥ x² − 6x + 8.",
+        "10x ≥ 5.",
+        "x ≥ 1/2.",
+        "Среди предложенных вариантов неравенству удовлетворяет число 1."
+      ]
+    }
+  },
+
+  {
+    id:3,
+    answer:"A",
+
+    question:{
+      kk:"A және B шамаларын салыстырыңыз.",
+      ru:"Сравните величины A и B."
+    },
+
+    extra:compareTable3(),
+
+    options:[
+      {
+        kk:"A шамасы B шамасына тең",
+        ru:"Величина A равна величине B"
+      },
+      {
+        kk:"A шамасы B шамасынан кіші",
+        ru:"Величина A меньше величины B"
+      },
+      {
+        kk:"2A = B",
+        ru:"2A = B"
+      },
+      {
+        kk:"A шамасы B шамасынан үлкен",
+        ru:"Величина A больше величины B"
+      },
+      {
+        kk:"Берілген ақпараттар бойынша салыстыру мүмкін емес",
+        ru:"По имеющейся информации сравнить величины невозможно"
+      }
+    ],
+
+    explain:{
+      kk:[
+        "20 санының бөлгіштері: 1, 2, 4, 5, 10, 20. Барлығы 6 бөлгіш.",
+        "130-дан кіші 20 санының еселіктері: 20, 40, 60, 80, 100, 120. Барлығы 6 сан.",
+        "Сондықтан A = B."
+      ],
+
+      ru:[
+        "Делители числа 20: 1, 2, 4, 5, 10, 20. Всего 6 делителей.",
+        "Кратные 20, меньшие 130: 20, 40, 60, 80, 100, 120. Всего 6 чисел.",
+        "Следовательно, A = B."
+      ]
+    }
+  },
+
+  {
+    id:4,
+    answer:"A",
+
+    question:{
+      kk:"Қорадағы қозылар мен балапандар саны — 9, аяқтарының жалпы саны 26. Қорада неше қозы және неше балапан бар?",
+      ru:"В загоне всего 9 ягнят и цыплят. Общее количество их ног равно 26. Сколько в загоне ягнят и сколько цыплят?"
+    },
+
+    options:[
+      {
+        kk:"4 қозы, 5 балапан",
+        ru:"4 ягнёнка, 5 цыплят"
+      },
+      {
+        kk:"7 қозы, 2 балапан",
+        ru:"7 ягнят, 2 цыплёнка"
+      },
+      {
+        kk:"5 қозы, 4 балапан",
+        ru:"5 ягнят, 4 цыплёнка"
+      },
+      {
+        kk:"6 қозы, 3 балапан",
+        ru:"6 ягнят, 3 цыплёнка"
+      },
+      {
+        kk:"3 қозы, 6 балапан",
+        ru:"3 ягнёнка, 6 цыплят"
+      }
+    ],
+
+    explain:{
+      kk:[
+        "Қозылар санын x, балапандар санын y деп аламыз.",
+        "x + y = 9 және 4x + 2y = 26.",
+        "y = 9 − x.",
+        "4x + 2(9 − x) = 26, бұдан x = 4 және y = 5."
+      ],
+
+      ru:[
+        "Пусть x — количество ягнят, y — количество цыплят.",
+        "x + y = 9 и 4x + 2y = 26.",
+        "y = 9 − x.",
+        "4x + 2(9 − x) = 26, откуда x = 4 и y = 5."
+      ]
+    }
+  },
+
+  {
+    id:5,
+    answer:"A",
+
+    question:{
+      kk:"Қораптағы шоколад қорабымен бірге 325 грамм. Шоколад қораптан 175 грамға ауыр. Шоколадтың салмағын табыңыз.",
+      ru:"Шоколад вместе с коробкой весит 325 граммов. Шоколад на 175 граммов тяжелее коробки. Найдите массу шоколада."
+    },
+
+    options:[
+      {kk:"250 грамм",ru:"250 граммов"},
+      {kk:"280 грамм",ru:"280 граммов"},
+      {kk:"240 грамм",ru:"240 граммов"},
+      {kk:"255 грамм",ru:"255 граммов"},
+      {kk:"260 грамм",ru:"260 граммов"}
+    ],
+
+    explain:{
+      kk:[
+        "Шоколадтың салмағын x, қораптың салмағын y деп аламыз.",
+        "x + y = 325 және x − y = 175.",
+        "Екі теңдеуді қосамыз: 2x = 500.",
+        "x = 250 грамм."
+      ],
+
+      ru:[
+        "Пусть x — масса шоколада, y — масса коробки.",
+        "x + y = 325 и x − y = 175.",
+        "Складываем уравнения: 2x = 500.",
+        "x = 250 граммов."
+      ]
+    }
+  },
+
+  {
+    id:6,
+    answer:"A",
+
+    question:{
+      kk:"Квадраттың диагоналі 4√2 см екені белгілі. Квадраттың ауданын табыңыз.",
+      ru:"Диагональ квадрата равна 4√2 см. Найдите площадь квадрата."
+    },
+
+    options:[
+      {kk:"16 см²",ru:"16 см²"},
+      {kk:"8√2 см²",ru:"8√2 см²"},
+      {kk:"32 см²",ru:"32 см²"},
+      {kk:"16√2 см²",ru:"16√2 см²"},
+      {kk:"4 см²",ru:"4 см²"}
+    ],
+
+    explain:{
+      kk:[
+        "Квадрат диагоналі d = a√2 формуласы арқылы табылады.",
+        "a√2 = 4√2 болғандықтан, a = 4 см.",
+        "Ауданы: S = a² = 4² = 16 см²."
+      ],
+
+      ru:[
+        "Диагональ квадрата находится по формуле d = a√2.",
+        "Так как a√2 = 4√2, сторона a = 4 см.",
+        "Площадь: S = a² = 4² = 16 см²."
+      ]
+    }
+  },
+
+  {
+    id:7,
+    answer:"A",
+
+    question:{
+      kk:"Оқушының алты оқу күнінде мектепке баруға кеткен уақыты: 35, 35, 25, 40, 30, 45 минут. Оқушыға мектепке бару үшін бір күнде орташа есеппен қанша уақыт қажет?",
+      ru:"В течение шести учебных дней ученик тратил на дорогу в школу 35, 35, 25, 40, 30 и 45 минут. Сколько времени в среднем требовалось ему на дорогу в школу за один день?"
+    },
+
+    options:[
+      {kk:"35 минут",ru:"35 минут"},
+      {kk:"30 минут",ru:"30 минут"},
+      {kk:"45 минут",ru:"45 минут"},
+      {kk:"18 минут",ru:"18 минут"},
+      {kk:"27 минут",ru:"27 минут"}
+    ],
+
+    explain:{
+      kk:[
+        "Барлық уақытты қосамыз: 35 + 35 + 25 + 40 + 30 + 45 = 210.",
+        "Күндер саны — 6.",
+        "Орташа уақыт: 210 / 6 = 35 минут."
+      ],
+
+      ru:[
+        "Складываем всё время: 35 + 35 + 25 + 40 + 30 + 45 = 210.",
+        "Количество дней — 6.",
+        "Среднее время: 210 / 6 = 35 минут."
+      ]
+    }
+  },
+
+  {
+    id:8,
+    answer:"A",
+
+    question:{
+      kk:"A және B шамаларын салыстырыңыз.",
+      ru:"Сравните величины A и B."
+    },
+
+    extra:compareTable8(),
+
+    options:[
+      {
+        kk:"B шамасы үлкен",
+        ru:"Величина B больше"
+      },
+      {
+        kk:"Екі еселенген A шамасы B шамасына тең",
+        ru:"Удвоенная величина A равна величине B"
+      },
+      {
+        kk:"Екі шама тең",
+        ru:"Обе величины равны"
+      },
+      {
+        kk:"A шамасы үлкен",
+        ru:"Величина A больше"
+      },
+      {
+        kk:"Берілген ақпараттан жауабын табу мүмкін емес",
+        ru:"По имеющейся информации определить ответ невозможно"
+      }
+    ],
+
+    explain:{
+      kk:[
+        "5x − 2 = 4 теңдеуінен 5x = 6, сондықтан x = 6/5.",
+        "4x + 3y = 17 теңдеуіне x = 6/5 мәнін қоямыз.",
+        "24/5 + 3y = 17, сондықтан y = 61/15.",
+        "y > x, демек B шамасы үлкен."
+      ],
+
+      ru:[
+        "Из уравнения 5x − 2 = 4 получаем 5x = 6, поэтому x = 6/5.",
+        "Подставляем x = 6/5 в уравнение 4x + 3y = 17.",
+        "24/5 + 3y = 17, поэтому y = 61/15.",
+        "y > x, следовательно, величина B больше."
+      ]
+    }
+  },
+
+  {
+    id:9,
+    answer:"A",
+
+    question:{
+      kk:"A және B шамаларын салыстырыңыз.",
+      ru:"Сравните величины A и B."
+    },
+
+    extra:compareTable9(),
+
+    options:[
+      {
+        kk:"Екі шама тең",
+        ru:"Обе величины равны"
+      },
+      {
+        kk:"A шамасы үлкен",
+        ru:"Величина A больше"
+      },
+      {
+        kk:"B шамасы үлкен",
+        ru:"Величина B больше"
+      },
+      {
+        kk:"Берілген ақпараттан жауабын табу мүмкін емес",
+        ru:"По имеющейся информации определить ответ невозможно"
+      },
+      {
+        kk:"Екі еселенген A шамасы B шамасына тең",
+        ru:"Удвоенная величина A равна величине B"
+      }
+    ],
+
+    explain:{
+      kk:[
+        "■ = 2.",
+        "A = (2²)³ = 2⁶.",
+        "B = (2³)² = 2⁶.",
+        "Сондықтан A = B."
+      ],
+
+      ru:[
+        "■ = 2.",
+        "A = (2²)³ = 2⁶.",
+        "B = (2³)² = 2⁶.",
+        "Следовательно, A = B."
+      ]
+    }
+  },
+
+  {
+    id:10,
+    answer:"A",
+
+    question:{
+      kk:"Кубтың көрсетілген қимасының диагоналін табыңыз. AB = 2 см.",
+      ru:"Найдите диагональ указанного сечения куба. AB = 2 см."
+    },
+
+    figure:cubeSectionFigure(),
+
+    options:[
+      {kk:"2√2 см",ru:"2√2 см"},
+      {kk:"3√2 см",ru:"3√2 см"},
+      {kk:"3√3 см",ru:"3√3 см"},
+      {kk:"2 см",ru:"2 см"},
+      {kk:"√2 см",ru:"√2 см"}
+    ],
+
+    explain:{
+      kk:[
+        "Көрсетілген қима — қабырғасы 2 см болатын квадрат.",
+        "Квадраттың диагоналі d = a√2.",
+        "d = 2√2 см."
+      ],
+
+      ru:[
+        "Указанное сечение является квадратом со стороной 2 см.",
+        "Диагональ квадрата равна d = a√2.",
+        "d = 2√2 см."
+      ]
+    }
+  },
+
+  {
+    id:11,
+    answer:"A",
+
+    question:{
+      kk:"Суретте m және l түзулері перпендикуляр. Егер l түзуінің теңдеуі y = kx + b болса, k мәні неге тең?",
+      ru:"На рисунке прямые m и l перпендикулярны. Если уравнение прямой l имеет вид y = kx + b, чему равно значение k?"
+    },
+
+    figure:perpendicularGraph(),
+
+    options:[
+      {kk:"2",ru:"2"},
+      {kk:"−1/4",ru:"−1/4"},
+      {kk:"−0,5",ru:"−0,5"},
+      {kk:"−4",ru:"−4"},
+      {kk:"4",ru:"4"}
+    ],
+
+    explain:{
+      kk:[
+        "m түзуінің көлбеулік коэффициенті −0,5.",
+        "Перпендикуляр түзулердің көлбеулік коэффициенттерінің көбейтіндісі −1-ге тең.",
+        "−0,5 · k = −1.",
+        "k = 2."
+      ],
+
+      ru:[
+        "Угловой коэффициент прямой m равен −0,5.",
+        "Произведение угловых коэффициентов перпендикулярных прямых равно −1.",
+        "−0,5 · k = −1.",
+        "k = 2."
+      ]
+    }
+  },
+
+  {
+    id:12,
+    answer:"A",
+
+    question:{
+      kk:"x<sup>1/3</sup> + x<sup>2/3</sup> + x + 1 = 0 теңдеуінің шешімін табыңыз.",
+      ru:"Найдите решение уравнения x<sup>1/3</sup> + x<sup>2/3</sup> + x + 1 = 0."
+    },
+
+    options:[
+      {kk:"−1",ru:"−1"},
+      {kk:"1",ru:"1"},
+      {kk:"−2",ru:"−2"},
+      {kk:"2",ru:"2"},
+      {kk:"0",ru:"0"}
+    ],
+
+    explain:{
+      kk:[
+        "t = x<sup>1/3</sup> деп белгілейміз. Онда x = t³ және x<sup>2/3</sup> = t².",
+        "t³ + t² + t + 1 = 0.",
+        "Топтастырамыз: (t + 1)(t² + 1) = 0.",
+        "Нақты шешім t = −1, сондықтан x = −1."
+      ],
+
+      ru:[
+        "Обозначим t = x<sup>1/3</sup>. Тогда x = t³ и x<sup>2/3</sup> = t².",
+        "t³ + t² + t + 1 = 0.",
+        "Группируем: (t + 1)(t² + 1) = 0.",
+        "Действительное решение t = −1, поэтому x = −1."
+      ]
+    }
+  },
+
+  {
+    id:13,
+    answer:"A",
+
+    question:{
+      kk:"Үш бұзаулы сиыр, екі құлынды бие және 10 қойдың құлақтары саны олардың тұяқтары санынан қаншаға кем болатынын анықтаңыз.",
+      ru:"Определите, на сколько количество ушей у трёх коров с телятами, двух кобыл с жеребятами и десяти овец меньше количества их копыт."
+    },
+
+    options:[
+      {kk:"20-ға",ru:"На 20"},
+      {kk:"104-ке",ru:"На 104"},
+      {kk:"40-қа",ru:"На 40"},
+      {kk:"144-ке",ru:"На 144"},
+      {kk:"80-ге",ru:"На 80"}
+    ],
+
+    explain:{
+      kk:[
+        "Берілген материалда осы тапсырманың қабылданған дұрыс жауабы — 20-ға.",
+        "Сайтта бірінші нұсқа дұрыс жауап ретінде белгіленеді."
+      ],
+
+      ru:[
+        "В предоставленном материале принятым правильным ответом для этого задания указано значение «на 20».",
+        "В тесте правильным отмечается первый вариант."
+      ]
+    }
+  },
+
+  {
+    id:14,
+    answer:"A",
+
+    question:{
+      kk:"Салмақтары бірдей екі қоспаның бірінің 1/8-і хром, екіншісінің 3/8-і хром. Екі қоспаның қорытпасында хромның қандай пайызы болатынын анықтаңыз.",
+      ru:"В двух смесях одинаковой массы доля хрома составляет 1/8 и 3/8 соответственно. Определите процент хрома в смеси, полученной при их объединении."
+    },
+
+    options:[
+      {kk:"25%",ru:"25%"},
+      {kk:"20%",ru:"20%"},
+      {kk:"23%",ru:"23%"},
+      {kk:"28%",ru:"28%"},
+      {kk:"26%",ru:"26%"}
+    ],
+
+    explain:{
+      kk:[
+        "Қоспалардың салмақтары бірдей болғандықтан, үлестердің орташа мәнін табамыз.",
+        "(1/8 + 3/8) / 2 = 4/8 / 2 = 1/4.",
+        "1/4 = 25%."
+      ],
+
+      ru:[
+        "Так как массы смесей одинаковы, находим среднее значение долей.",
+        "(1/8 + 3/8) / 2 = 4/8 / 2 = 1/4.",
+        "1/4 = 25%."
+      ]
+    }
+  },
+
+  {
+    id:15,
+    answer:"A",
+
+    question:{
+      kk:"Егер (5a²)b² = 75 болса, (ab)² мәнін табыңыз.",
+      ru:"Если (5a²)b² = 75, найдите значение (ab)²."
+    },
+
+    options:[
+      {kk:"15",ru:"15"},
+      {kk:"3",ru:"3"},
+      {kk:"1",ru:"1"},
+      {kk:"1/3",ru:"1/3"},
+      {kk:"1/5",ru:"1/5"}
+    ],
+
+    explain:{
+      kk:[
+        "(5a²)b² = 5a²b².",
+        "5(ab)² = 75.",
+        "(ab)² = 75 / 5 = 15."
+      ],
+
+      ru:[
+        "(5a²)b² = 5a²b².",
+        "5(ab)² = 75.",
+        "(ab)² = 75 / 5 = 15."
+      ]
+    }
+  }
+];
+
+function renderCritical(){
+  const container = document.getElementById("criticalQuestions");
+
+  container.innerHTML = criticalQuestions
+    .map(question=>renderQuestion("critical",question))
+    .join("");
+}
+  const periodicTextKz = `
+  Қазіргі кезде периодтық жүйеде барлық элементтер рет бойынша нөмірленген.
+  Элементтердің нөмірін реттік немесе атомдық нөмір деп атайды.
+  Химиялық элементтердің периодтық жүйесін құрастырудағы негізгі принцип –
+  барлық элементтерді периодтар мен топтарға бөліп орналастыру.
+  Әр топ өз кезегінде негізгі (а) және (б) топшаларға бөлінеді.
+  Топшалардағы элементтер өзара химиялық қасиеттері жағынан өте ұқсас.
+`;
+
+const biologyTextKz = `
+  Биология – тіршілік туралы ғылым. Ол тірі ағзалардың құрылысын,
+  қызметін, өсіп дамуын және сыртқы ортамен қарым-қатынасын зерттейді.
+  «Биология» деген терминді алғаш рет 1797 жылы неміс ғалымы
+  Т. Руз (1771–1803) енгізген. Қазіргі биологияны тірі табиғатты
+  және оның құрамдас бөліктерін зерттейтін ғылымдардың жиынтығы
+  деп атауға болады. Себебі биология ғылымының соңғы 30–40 жыл
+  аралығында қарқынды дамуы кейбір биологиялық пәндердің
+  (молекулалық биология, цитогенетика, биофизика және т.б.)
+  жеке-дара ғылым ретінде қалыптасуына мүмкіндік туғызды.
+`;
+
+const fingerTextKz = `
+  Адам саусақтарындағы екі сүйектің қосылған жерінде байланыс капсуласы бар.
+  Бұл капсуланың ішінде сүйектердің әрекет етуі барысында сол жерлерді
+  майлайтын бір сұйықтық бар. Бұл сұйықтық оттегі, азот және көміртегі
+  газдарынан құралған. Денеміздің ең оңай тырсылдайтын буындары
+  саусақтарымыз болып табылады.
+
+  Саусақтарымыз керілген кезде буындар түзеліп, капсула да керіледі.
+  Капсуланың ішіндегі сұйықтықтың қысымы азайып, газ көпіршіктері жарылады.
+  Біздің құлағымызға естілетін дыбыстар осыдан пайда болады.
+  Жарылған көпіршіктер нәтижесінде газдар сұйықтықтан бөлініп шығады
+  және сұйықтық тағы да кеңейіп, буындардың әрекет ету қабілетін арттырады.
+
+  Бір саусағымызды бірнеше рет қатарынан тарсылдата алмаймыз.
+  Біраз уақыт күтуіміз керек. Өйткені газ көпіршіктері сұйықтықтың
+  ішінде тағы да түзілуі үшін біраз уақыт қажет болады.
+`;
+
+const metallurgyTextKz = `
+  Қазақстан жерінде металлургия кәсібі өте ерте заманда пайда болған.
+  Алғашқы қауымдық құрылыстың өзінде Қазақстан жерінде металлургияның
+  белгілі формасы болғаны анықталған. Орталық Қазақстандағы Атасу
+  маңынан көне заманның мыс қорытатын ескі пештерін тапқан.
+
+  Бұдан 3 мың жыл бұрынғы осынау пештер сол заманда бұл өлкеде
+  металлургияның едәуір дамығанын байқатады. 1767–1774 жылдары
+  Қазақстанды зерттеген Петер Симон Паллас Алтай тауларында қорғасын,
+  күміс кендерінің қазылған орындары көп екенін айтқан.
+
+  XIX ғасырдан-ақ тау-кен зауыттары пайда бола бастайды.
+  Қазақстан қара және түсті металлургиясының қалыптасуы ең алдымен
+  тау-кен зауыты кәсіпорындарынан басталды. Бұл кезде пайдалы кен
+  орындарын игеру үшін ірі-ірі капиталдар жұмсайтын қоғамдар құрылды.
+  Қазақстан өнеркәсібі XX ғасырдың басында дәуірлеп өсе бастады.
+`;
+
+const analyticalKz = [
+  {
+    type:"question",
+    q:{
+      id:16,
+      answer:"A",
+
+      question:{
+        kk:`
+          Көп нүктенің орнындағы сөзді табыңыз.<br><br>
+          Райымжан Марсеков: «Өстіп әдебиетіміз төмендеп,
+          тіл болса кедейленіп бара жатқан уақытта ардақты
+          ... марқұм шығармаларын шығарды».
+        `
+      },
+
+      options:[
+        {kk:"Абай"},
+        {kk:"Ақан сері"},
+        {kk:"Дулат"},
+        {kk:"Алтынсарин"},
+        {kk:"Шортанбай"}
+      ],
+
+      explain:{
+        kk:[
+          "Райымжан Марсеков қазақ әдебиеті мен тілінің дамуы туралы сөз қозғайды.",
+          "Берілген сөйлемде ардақты Абайдың шығармалары туралы айтылған.",
+          "Дұрыс жауап — «Абай»."
+        ],
+        ru:[""]
+      }
+    }
+  },
+
+  {
+    type:"question",
+    q:{
+      id:17,
+      answer:"A",
+
+      question:{
+        kk:`
+          Көп нүктенің орнына сәйкес сөзді жазыңыз.<br><br>
+          Ей, Абылай, Абылай,<br>
+          Сені мен көргенде,<br>
+          Тұрымтайдай [...] едің,<br>
+          Түркістанда жүр едің.
+        `
+      },
+
+      options:[
+        {kk:"ұл"},
+        {kk:"адам"},
+        {kk:"құл"},
+        {kk:"кісі"},
+        {kk:"бала"}
+      ],
+
+      explain:{
+        kk:[
+          "Өлең жолындағы тұрақты нұсқа — «Тұрымтайдай ұл едің».",
+          "Сөйлемнің мағынасы мен ұйқасына «ұл» сөзі сәйкес келеді.",
+          "Дұрыс жауап — «ұл»."
+        ],
+        ru:[""]
+      }
+    }
+  },
+
+  {
+    type:"question",
+    q:{
+      id:18,
+      answer:"A",
+
+      question:{
+        kk:`
+          Сөйлемді мағынасына сай толықтырыңыз.<br><br>
+          Физика – өріс пен заттың жалпы ..... және олардың
+          қозғалыс заңдарын зерттейтін ғылым.
+        `
+      },
+
+      options:[
+        {kk:"қасиеттерін"},
+        {kk:"күшін"},
+        {kk:"қабілетін"},
+        {kk:"түрін"},
+        {kk:"түзілуін"}
+      ],
+
+      explain:{
+        kk:[
+          "Физика заттар мен өрістердің жалпы қасиеттерін зерттейді.",
+          "«Жалпы қасиеттерін және олардың қозғалыс заңдарын» тіркесі мағыналық жағынан дұрыс құрылған.",
+          "Дұрыс жауап — «қасиеттерін»."
+        ],
+        ru:[""]
+      }
+    }
+  },
+
+  {
+    type:"text",
+    title:{kk:"19–21-сұрақтарға арналған мәтін"},
+    text:{kk:periodicTextKz}
+  },
+
+  {
+    type:"question",
+    q:{
+      id:19,
+      answer:"A",
+
+      question:{
+        kk:"Берілген мәтінге сәйкес тақырыпты таңдаңыз."
+      },
+
+      options:[
+        {kk:"Периодтық жүйе"},
+        {kk:"Элементтердің ашылуы"},
+        {kk:"Топшалар"},
+        {kk:"Химиялық элементтердің зерттелуі"},
+        {kk:"Химиялық қасиеттері"}
+      ],
+
+      explain:{
+        kk:[
+          "Мәтінде периодтық жүйедегі элементтердің нөмірленуі, периодтар мен топтарға бөлінуі түсіндіріледі.",
+          "Мәтіннің барлық бөлігін қамтитын негізгі тақырып — периодтық жүйе.",
+          "Дұрыс жауап — «Периодтық жүйе»."
+        ],
+        ru:[""]
+      }
+    }
+  },
+
+  {
+    type:"question",
+    q:{
+      id:20,
+      answer:"A",
+
+      question:{
+        kk:"Берілген мәтіннің мақсатын анықтаңыз."
+      },
+
+      options:[
+        {kk:"Периодтық жүйенің құрылымын көрсету"},
+        {kk:"Элементтердің электрөткізгіштігін көрсету"},
+        {kk:"Химиялық элементтер ретін анықтау"},
+        {kk:"Элементтердің өзара қасиеттерін салыстыру"},
+        {kk:"Химиялық элементтердің құрамын саралау"}
+      ],
+
+      explain:{
+        kk:[
+          "Мәтінде элементтердің нөмірленуі, периодтар, топтар және топшалар туралы ақпарат берілген.",
+          "Автор периодтық жүйенің қалай құрылғанын көрсетеді.",
+          "Дұрыс жауап — «Периодтық жүйенің құрылымын көрсету»."
+        ],
+        ru:[""]
+      }
+    }
+  },
+
+  {
+    type:"question",
+    q:{
+      id:21,
+      answer:"A",
+
+      question:{
+        kk:"«Ұқсас» сөзіне мағынасы жақын сөзді табыңыз."
+      },
+
+      options:[
+        {kk:"сәйкес"},
+        {kk:"белгілі"},
+        {kk:"танымал"},
+        {kk:"үлкен"},
+        {kk:"алыс"}
+      ],
+
+      explain:{
+        kk:[
+          "«Ұқсас» сөзі бір-біріне сәйкес, бірдей белгілері бар деген мағынаны білдіреді.",
+          "Берілген нұсқалардың ішінде мағынасы жақын сөз — «сәйкес».",
+          "Дұрыс жауап — «сәйкес»."
+        ],
+        ru:[""]
+      }
+    }
+  },
+
+  {
+    type:"text",
+    title:{kk:"22–24-сұрақтарға арналған мәтін"},
+    text:{kk:biologyTextKz}
+  },
+
+  {
+    type:"question",
+    q:{
+      id:22,
+      answer:"A",
+
+      question:{
+        kk:"Берілген мәтінге сәйкес тақырыпты таңдаңыз."
+      },
+
+      options:[
+        {kk:"Тіршілік туралы ғылым"},
+        {kk:"Ғылыми байланыс"},
+        {kk:"Биологияның салалары"},
+        {kk:"Биолог ғалым"},
+        {kk:"Биологияның зерттелуі"}
+      ],
+
+      explain:{
+        kk:[
+          "Мәтіннің алғашқы сөйлемінде биологияның тіршілік туралы ғылым екені анық айтылған.",
+          "Кейінгі сөйлемдер осы ойды түсіндіреді және толықтырады.",
+          "Дұрыс жауап — «Тіршілік туралы ғылым»."
+        ],
+        ru:[""]
+      }
+    }
+  },
+
+  {
+    type:"question",
+    q:{
+      id:23,
+      answer:"A",
+
+      question:{
+        kk:"Берілген мәтіннің мақсатын анықтаңыз."
+      },
+
+      options:[
+        {kk:"Биология ғылымы туралы түсінік беру"},
+        {kk:"Биология ғылымының зерттелуі туралы"},
+        {kk:"Биологиялық пәндерге сипаттама жасау"},
+        {kk:"Биологияның бүгінгі таңдағы жетістіктері"},
+        {kk:"Неміс ғалымы Т. Руздің еңбектеріне шолу"}
+      ],
+
+      explain:{
+        kk:[
+          "Мәтінде биологияның анықтамасы, зерттеу нысаны және ғылым ретінде дамуы туралы жалпы ақпарат берілген.",
+          "Автордың негізгі мақсаты — биология ғылымы туралы түсінік беру.",
+          "Дұрыс жауап — бірінші нұсқа."
+        ],
+        ru:[""]
+      }
+    }
+  },
+
+  {
+    type:"question",
+    q:{
+      id:24,
+      answer:"A",
+
+      question:{
+        kk:"«Даму» сөзіне мағынасы жақын сөзді табыңыз."
+      },
+
+      options:[
+        {kk:"Өсу"},
+        {kk:"Оқу"},
+        {kk:"Жасау"},
+        {kk:"Жинау"},
+        {kk:"Кету"}
+      ],
+
+      explain:{
+        kk:[
+          "«Даму» сөзі жетілу, өсу, алға жылжу мағынасында қолданылады.",
+          "Берілген сөздердің ішінен ең жақын мағыналысы — «өсу».",
+          "Дұрыс жауап — «Өсу»."
+        ],
+        ru:[""]
+      }
+    }
+  },
+
+  {
+    type:"text",
+    title:{kk:"25–27-сұрақтарға арналған мәтін"},
+    text:{kk:fingerTextKz}
+  },
+
+  {
+    type:"question",
+    q:{
+      id:25,
+      answer:"B",
+
+      question:{
+        kk:"«Қабілетін» сөзіне мағынасы жақын сөзді табыңыз."
+      },
+
+      options:[
+        {kk:"шамасын"},
+        {kk:"қызметін"},
+        {kk:"сапасын"},
+        {kk:"уақытын"},
+        {kk:"қасиетін"}
+      ],
+
+      explain:{
+        kk:[
+          "Мәтінде буындардың әрекет ету қабілеті туралы айтылған.",
+          "Бұл контексте «қабілеті» сөзі буынның атқаратын қызметі мағынасында қолданылған.",
+          "Дұрыс жауап — «қызметін»."
+        ],
+        ru:[""]
+      }
+    }
+  },
+
+  {
+    type:"question",
+    q:{
+      id:26,
+      answer:"A",
+
+      question:{
+        kk:"Берілген мәтінге сәйкес тақырыпты таңдаңыз."
+      },
+
+      options:[
+        {kk:"Буын сұйықтығы"},
+        {kk:"Саусақ сүйектері"},
+        {kk:"Саусақ дыбысы"},
+        {kk:"Саусақ құрылымы"},
+        {kk:"Буын дыбыстары"}
+      ],
+
+      explain:{
+        kk:[
+          "Мәтінде буын капсуласындағы сұйықтықтың құрамы мен әрекеті түсіндіріледі.",
+          "Газ көпіршіктерінің пайда болуы мен жарылуы да осы сұйықтықпен байланысты.",
+          "Дұрыс тақырып — «Буын сұйықтығы»."
+        ],
+        ru:[""]
+      }
+    }
+  },
+
+  {
+    type:"question",
+    q:{
+      id:27,
+      answer:"A",
+
+      question:{
+        kk:"Берілген мәтіннің мақсатын анықтаңыз."
+      },
+
+      options:[
+        {kk:"Саусақ тырсылының пайда болуын түсіндіру"},
+        {kk:"Саусақ тырсылының пайда болуын салыстыру"},
+        {kk:"Саусақ тырсылының пайда болуына мысал келтіру"},
+        {kk:"Саусақ тырсылының пайда болуын саралау"},
+        {kk:"Саусақ тырсылының пайда болуына пікір білдіру"}
+      ],
+
+      explain:{
+        kk:[
+          "Мәтінде саусақ буынының неліктен дыбыс шығаратыны кезең-кезеңімен түсіндірілген.",
+          "Автор газ көпіршіктерінің түзілуі мен жарылу себептерін баяндайды.",
+          "Дұрыс жауап — «Саусақ тырсылының пайда болуын түсіндіру»."
+        ],
+        ru:[""]
+      }
+    }
+  },
+
+  {
+    type:"text",
+    title:{kk:"28–30-сұрақтарға арналған мәтін"},
+    text:{kk:metallurgyTextKz}
+  },
+
+  {
+    type:"question",
+    q:{
+      id:28,
+      answer:"A",
+
+      question:{
+        kk:"«Өлкеде» сөзіне мағынасы жақын сөзді табыңыз."
+      },
+
+      options:[
+        {kk:"Өңірде"},
+        {kk:"Ағымда"},
+        {kk:"Кезеңде"},
+        {kk:"Салада"},
+        {kk:"Топта"}
+      ],
+
+      explain:{
+        kk:[
+          "«Өлке» сөзі аймақ, өңір деген мағынаны білдіреді.",
+          "Сондықтан «өлкеде» сөзіне мағынасы жақын сөз — «өңірде».",
+          "Дұрыс жауап — «Өңірде»."
+        ],
+        ru:[""]
+      }
+    }
+  },
+
+  {
+    type:"question",
+    q:{
+      id:29,
+      answer:"A",
+
+      question:{
+        kk:"Мәтінге сәйкес ақпаратты табыңыз."
+      },
+
+      options:[
+        {
+          kk:"Қазақстан металлургиясының қалыптасуы алғашқы дәуірден басталды"
+        },
+        {
+          kk:"Атасу маңында тау-кен орны бар"
+        },
+        {
+          kk:"Алтай тауларынан мыс қорыту пештері табылған"
+        },
+        {
+          kk:"Елімізде металлургия саласы жетекші орын алады"
+        },
+        {
+          kk:"Тау-кен зауыттық өнеркәсібі XX ғасырда қалыптаса бастады"
+        }
+      ],
+
+      explain:{
+        kk:[
+          "Мәтінде металлургия кәсібінің Қазақстан жерінде өте ерте заманда пайда болғаны айтылады.",
+          "Алғашқы қауымдық құрылыс кезеңінде де металлургияның белгілі формасы болған.",
+          "Дұрыс жауап — «Қазақстан металлургиясының қалыптасуы алғашқы дәуірден басталды»."
+        ],
+        ru:[""]
+      }
+    }
+  },
+
+  {
+    type:"question",
+    q:{
+      id:30,
+      answer:"A",
+
+      question:{
+        kk:`
+          Мәтінде берілген ойды ары қарай жалғастырыңыз.<br><br>
+          Қазақстанда тау-кен зауыттары негізінде ............
+        `
+      },
+
+      options:[
+        {kk:"қара және түсті металлургия қалыптасты"},
+        {kk:"байланыс дәуірлей бастады"},
+        {kk:"сауда дамыды"},
+        {kk:"қоғамдар құрылды"},
+        {kk:"пештері салынды"}
+      ],
+
+      explain:{
+        kk:[
+          "Мәтінде Қазақстанның қара және түсті металлургиясының қалыптасуы тау-кен зауыты кәсіпорындарынан басталғаны айтылған.",
+          "Сөйлемнің дұрыс жалғасы — «қара және түсті металлургия қалыптасты».",
+          "Дұрыс жауап — бірінші нұсқа."
+        ],
+        ru:[""]
+      }
+    }
+  }
+];
+  const analyticalRu = [
+  {
+    type:"question",
+    q:{
+      id:16,
+      answer:"A",
+
+      question:{
+        ru:"Выберите тип научной деятельности, обозначаемый термином «монолог»."
+      },
+
+      options:[
+        {ru:"диссертация"},
+        {ru:"мозговая атака"},
+        {ru:"групповая дискуссия"},
+        {ru:"разговор по телефону"},
+        {ru:"партийное собрание"}
+      ],
+
+      explain:{
+        ru:[
+          "Монолог предполагает развёрнутое высказывание одного человека.",
+          "Диссертация представляет собой самостоятельное научное изложение результатов исследования.",
+          "Правильный ответ — «диссертация»."
+        ]
+      }
+    }
+  },
+
+  {
+    type:"question",
+    q:{
+      id:17,
+      answer:"B",
+
+      question:{
+        ru:"Сообразуясь с цитатой, укажите, что предлагает И. Алтынсарин."
+      },
+
+      options:[
+        {
+          ru:"Познать нацию, чтобы понять, как она может ослабнуть"
+        },
+        {
+          ru:"Познать природу, а потом уже преобразовывать её"
+        },
+        {
+          ru:"Быть разумными в отношении окружающей природы"
+        },
+        {
+          ru:"Познать народную жизнь, прежде чем её искусственно изменить"
+        },
+        {
+          ru:"Познать наличие у народа предрасположенности к агрокультуре"
+        }
+      ],
+
+      explain:{
+        ru:[
+          "В суждении подчёркивается необходимость сначала изучить природу.",
+          "Преобразование должно основываться на предварительном познании.",
+          "Правильный ответ — «Познать природу, а потом уже преобразовывать её»."
+        ]
+      }
+    }
+  },
+
+  {
+    type:"question",
+    q:{
+      id:18,
+      answer:"C",
+
+      question:{
+        ru:"Выберите верное определение категории «пафос»."
+      },
+
+      options:[
+        {
+          ru:"положение, которое ритор должен аргументировать"
+        },
+        {
+          ru:"правила речевого поведения деловых людей"
+        },
+        {
+          ru:"направленность эмоций, воли и разума на достижение результата речи"
+        },
+        {
+          ru:"совокупность этических правил и условий ведения речи"
+        },
+        {
+          ru:"ложное утверждение, имеющее внешне правильную форму"
+        }
+      ],
+
+      explain:{
+        ru:[
+          "Пафос связан с эмоциональной и волевой направленностью речи.",
+          "Он помогает воздействовать на слушателей и вести речь к поставленной цели.",
+          "Правильный ответ — третий вариант."
+        ]
+      }
+    }
+  },
+
+  {
+    type:"question",
+    q:{
+      id:19,
+      answer:"A",
+
+      question:{
+        ru:`
+          В классической и новой риторике сформулирован риторический канон,
+          определяющий этапы работы над грамотным текстом. Марк Туллий Цицерон
+          формулировал задачи создателя влиятельного текста так:<br><br>
+
+          • найти, что сказать — изобретение, инвенция;<br>
+          • найденное расположить по порядку — композиция, диспозиция;<br>
+          • придать ему словесную форму — выражение, элоквенция;<br>
+          • утвердить всё в памяти — запоминание, меморио;<br>
+          • произнести — акцио.<br><br>
+
+          Выберите верное определение этапа «инвенция».
+        `
+      },
+
+      options:[
+        {
+          ru:"отбор содержания из источников для будущего выступления"
+        },
+        {
+          ru:"словесное выражение отобранного и скомпонованного материала"
+        },
+        {
+          ru:"расположение отобранного материала"
+        },
+        {
+          ru:"авторское разыгрывание речи на публике"
+        },
+        {
+          ru:"запоминание основных положений текста речи"
+        }
+      ],
+
+      explain:{
+        ru:[
+          "Инвенция — этап поиска и отбора содержания будущей речи.",
+          "На этом этапе автор определяет, что именно он будет говорить.",
+          "Правильный ответ — «отбор содержания из источников для будущего выступления»."
+        ]
+      }
+    }
+  },
+
+  {
+    type:"question",
+    q:{
+      id:20,
+      answer:"C",
+
+      question:{
+        ru:"Выберите верное определение этапа «диспозиция»."
+      },
+
+      options:[
+        {
+          ru:"словесное выражение отобранного и скомпонованного материала"
+        },
+        {
+          ru:"отбор содержания из источников для будущего выступления"
+        },
+        {
+          ru:"расположение отобранного материала"
+        },
+        {
+          ru:"запоминание основных положений текста речи"
+        },
+        {
+          ru:"авторское разыгрывание речи на публике"
+        }
+      ],
+
+      explain:{
+        ru:[
+          "Диспозиция — композиционное расположение уже найденного материала.",
+          "На этом этапе определяется порядок частей будущего выступления.",
+          "Правильный ответ — «расположение отобранного материала»."
+        ]
+      }
+    }
+  },
+
+  {
+    type:"question",
+    q:{
+      id:21,
+      answer:"B",
+
+      question:{
+        ru:`
+          Джон С. Милль писал, что политическая экономия «не рассматривает
+          ни в целом человеческую природу, видоизменяющуюся под влиянием
+          достигнутого состояния общества, ни в целом поведение человека
+          в обществе. Она касается человека только как существа, которое
+          желает обладать богатством и которое способно судить о сравнительной
+          полезности средств, используемых для достижения данного результата».<br><br>
+
+          Макс Вебер считал: «Размышление о последних элементах осмысленных
+          человеческих действий всегда связано с категориями „цели“ и „средства“.
+          Мы стремимся к чему-нибудь либо из-за его собственной ценности,
+          либо рассматриваем его как средство к достижению некоей цели.
+          Научному исследованию прежде всего доступна проблема соответствия
+          средств поставленной цели».<br><br>
+
+          Сравните эти два суждения и определите, что наиболее общего между ними.
+        `
+      },
+
+      options:[
+        {
+          ru:"Акцент поставлен на роли целеполагания и результата в экономической жизни человека"
+        },
+        {
+          ru:"Общее состоит в том, что речь идёт о сущности «экономического человека»"
+        },
+        {
+          ru:"Общее состоит в том, что прямо или косвенно речь идёт о богатстве как цели"
+        },
+        {
+          ru:"Акцент поставлен на том, что политическая экономия изучает поведение человека"
+        },
+        {
+          ru:"Акцент поставлен на полезности богатства как экономической цели"
+        }
+      ],
+
+      explain:{
+        ru:[
+          "В обоих суждениях человек рассматривается через цели и средства его деятельности.",
+          "Милль связывает его поведение с приобретением богатства, а Вебер — с осмысленным выбором целей и средств.",
+          "Общим является представление об «экономическом человеке»."
+        ]
+      }
+    }
+  },
+
+  {
+    type:"question",
+    q:{
+      id:22,
+      answer:"D",
+
+      question:{
+        ru:"Сравните суждения Джона С. Милля и Макса Вебера и определите их кардинальное отличие."
+      },
+
+      options:[
+        {
+          ru:"У Милля речь идёт о политэкономии как науке о человеке, стремящемся к богатству, а у Вебера — о возможности научного исследования соответствия средств поставленной экономической цели"
+        },
+        {
+          ru:"Кардинальное отличие состоит в том, что у Милля речь идёт о богатстве как благе, а у Вебера — о ценностях и роли средств их достижения"
+        },
+        {
+          ru:"Милль писал о политической экономии как конкретной науке, а Вебер упоминает научное исследование в общем виде"
+        },
+        {
+          ru:"Кардинальное отличие состоит в том, что у Милля речь идёт о сущности «экономического человека», а у Вебера — о целях и ценностях"
+        },
+        {
+          ru:"У Милля акцент поставлен на поведении человека, а у Вебера научное исследование изначально телеономично"
+        }
+      ],
+
+      explain:{
+        ru:[
+          "Милль описывает человека как субъекта экономического поведения.",
+          "Вебер рассматривает более общую проблему выбора целей, ценностей и средств.",
+          "Поэтому правильным является четвёртый вариант."
+        ]
+      }
+    }
+  },
+
+  {
+    type:"question",
+    q:{
+      id:23,
+      answer:"B",
+
+      question:{
+        ru:`
+          Мартин Хайдеггер в работе «Время картины мира» пишет:
+          «На Рейне поставлена гидроэлектростанция. Рейн теперь есть поставитель
+          гидравлического напора благодаря существованию гидроэлектростанции.
+          Чтобы хоть отдалённо оценить чудовищность этого обстоятельства,
+          на секунду задумаемся о контрасте, звучащем в этих двух именах
+          собственных: „Рейн“, встроенный в гидроэлектростанцию для производства
+          энергии, и „Рейн“, о котором говорит произведение искусства —
+          одноимённый гимн Фридриха Гёльдерлина».<br><br>
+
+          О каком контрасте говорит Хайдеггер?
+        `
+      },
+
+      options:[
+        {
+          ru:"Между возможностями использования природной силы реки Рейн"
+        },
+        {
+          ru:"Между производственным и поэтическим восприятием природного феномена"
+        },
+        {
+          ru:"Между обликами ландшафта до и после установления гидроэлектростанции на Рейне"
+        },
+        {
+          ru:"Между словоупотреблением в XIX и XX веках"
+        },
+        {
+          ru:"Между задачами промышленного производства и поэзией, искусством"
+        }
+      ],
+
+      explain:{
+        ru:[
+          "В первом случае Рейн представлен как источник промышленной энергии.",
+          "Во втором случае он воспринимается как природный и поэтический образ.",
+          "Правильный ответ — контраст производственного и поэтического восприятия."
+        ]
+      }
+    }
+  },
+
+  {
+    type:"question",
+    q:{
+      id:24,
+      answer:"E",
+
+      question:{
+        ru:`
+          В. И. Вернадский утверждал, что современное человечество
+          становится мощной силой, способной изменять облик Земли.
+          Заполните пропуск в выражении учёного.
+        `
+      },
+
+      options:[
+        {ru:"литосфера"},
+        {ru:"биосфера"},
+        {ru:"гидросфера"},
+        {ru:"атмосфера"},
+        {ru:"ноосфера"}
+      ],
+
+      explain:{
+        ru:[
+          "Ноосфера — сфера взаимодействия природы и разумной человеческой деятельности.",
+          "Учение о ноосфере связано с трудами В. И. Вернадского.",
+          "Правильный ответ — «ноосфера»."
+        ]
+      }
+    }
+  },
+
+  {
+    type:"question",
+    q:{
+      id:25,
+      answer:"D",
+
+      question:{
+        ru:`
+          Древнегреческий философ Эпикур говорил, что никто не должен
+          откладывать занятия философией в молодости или уставать от неё
+          в старости. Молодому человеку философия помогает соединить
+          юношескую энергию со зрелой уверенностью перед будущим,
+          а пожилому — духовно обновляться и радоваться прошлому.<br><br>
+
+          В чём значение этого высказывания?
+        `
+      },
+
+      options:[
+        {
+          ru:"Философия необходима человеку в среднем возрасте"
+        },
+        {
+          ru:"Философией следует заниматься в молодости"
+        },
+        {
+          ru:"Философией следует заниматься в пожилом возрасте"
+        },
+        {
+          ru:"Философия не теряет своей актуальности в любом возрасте"
+        },
+        {
+          ru:"Значение философии в жизни человека невелико"
+        }
+      ],
+
+      explain:{
+        ru:[
+          "Эпикур говорит о пользе философии и для молодых, и для пожилых людей.",
+          "Следовательно, философия важна на всех этапах человеческой жизни.",
+          "Правильный ответ — четвёртый вариант."
+        ]
+      }
+    }
+  },
+
+  {
+    type:"question",
+    q:{
+      id:26,
+      answer:"C",
+
+      question:{
+        ru:`
+          Один известный философ сказал: «Человек проклят быть свободным,
+          дважды проклят искать свободу, но трижды проклят не найти её».<br><br>
+
+          Другой не менее известный писатель и философ утверждал:
+          «Сизифа надо представлять себе счастливым…
+          Сизиф — свободен».<br><br>
+
+          Сравните приведённые суждения и укажите, что общего
+          в мировоззрении их авторов.
+        `
+      },
+
+      options:[
+        {
+          ru:"Оба автора, вероятно, знают античную историю"
+        },
+        {
+          ru:"Оба автора являются философствующими людьми"
+        },
+        {
+          ru:"Оба автора писали о свободе"
+        },
+        {
+          ru:"Оба автора являются экзистенциалистами"
+        },
+        {
+          ru:"Оба автора являются известными писателями"
+        }
+      ],
+
+      explain:{
+        ru:[
+          "В обоих высказываниях центральной темой является свобода человека.",
+          "Другие варианты содержат дополнительные предположения, которые не следуют непосредственно из приведённых суждений.",
+          "Правильный ответ — «Оба автора писали о свободе»."
+        ]
+      }
+    }
+  },
+
+  {
+    type:"question",
+    q:{
+      id:27,
+      answer:"E",
+
+      question:{
+        ru:"Каким может оказаться первое впечатление от духа и звучания двух приведённых мнений о свободе?"
+      },
+
+      options:[
+        {
+          ru:"Первое мнение теоретично, а второе посвящено античному герою"
+        },
+        {
+          ru:"Жизнь Сизифа лучше, чем жизнь реального человека"
+        },
+        {
+          ru:"Человек проклят, а Сизиф счастлив"
+        },
+        {
+          ru:"Первое суждение заметно длиннее второго"
+        },
+        {
+          ru:"Пессимизм первого и относительный оптимизм второго"
+        }
+      ],
+
+      explain:{
+        ru:[
+          "Первое высказывание передаёт тяжёлое и пессимистичное восприятие свободы.",
+          "Второе представляет Сизифа свободным и счастливым, поэтому звучит относительно оптимистично.",
+          "Правильный ответ — пятый вариант."
+        ]
+      }
+    }
+  },
+
+  {
+    type:"question",
+    q:{
+      id:28,
+      answer:"D",
+
+      question:{
+        ru:`
+          Гастон Башляр в книге «Рациональный материализм» писал:
+          «Между обыденным познанием и познанием научным существует,
+          по нашему мнению, столь чёткий разрыв, что эти два типа познания
+          не могут иметь единой философии. Эмпиризм — это философия,
+          подходящая для обыденного познания. Напротив, научное познание
+          связано с рационализмом».<br><br>
+
+          Что является главной темой приведённого суждения?
+        `
+      },
+
+      options:[
+        {
+          ru:"Различие эмпиризма и рационализма"
+        },
+        {
+          ru:"Разорванность мира, познания, науки и практики"
+        },
+        {
+          ru:"Разрыв обыденности и полноты в познании"
+        },
+        {
+          ru:"Принципиальное несходство обыденного и научного познания"
+        },
+        {
+          ru:"Отсутствие какой-либо единой философии"
+        }
+      ],
+
+      explain:{
+        ru:[
+          "Башляр противопоставляет обыденное познание научному.",
+          "Он подчёркивает принципиальный разрыв между этими двумя типами познания.",
+          "Правильный ответ — четвёртый вариант."
+        ]
+      }
+    }
+  },
+
+  {
+    type:"question",
+    q:{
+      id:29,
+      answer:"C",
+
+      question:{
+        ru:"Что Гастон Башляр не рассматривает в приведённой цитате?"
+      },
+
+      options:[
+        {
+          ru:"связь эмпиризма с обыденным познанием"
+        },
+        {
+          ru:"специфику обыденного и научного познания"
+        },
+        {
+          ru:"методы эмпирического и научного познания"
+        },
+        {
+          ru:"связь рационализма с наукой"
+        },
+        {
+          ru:"проблему единой философии двух уровней познания"
+        }
+      ],
+
+      explain:{
+        ru:[
+          "В цитате говорится о типах познания и связанных с ними философских направлениях.",
+          "Конкретные методы эмпирического и научного исследования автор не рассматривает.",
+          "Правильный ответ — третий вариант."
+        ]
+      }
+    }
+  },
+
+  {
+    type:"question",
+    q:{
+      id:30,
+      answer:"B",
+
+      question:{
+        ru:"Выберите верное определение этапа «выражение, элоквенция»."
+      },
+
+      options:[
+        {
+          ru:"расположение отобранного материала"
+        },
+        {
+          ru:"словесное выражение отобранного и скомпонованного материала"
+        },
+        {
+          ru:"запоминание основных положений текста речи"
+        },
+        {
+          ru:"отбор содержания из источников для будущего выступления"
+        },
+        {
+          ru:"авторское разыгрывание речи на публике"
+        }
+      ],
+
+      explain:{
+        ru:[
+          "Элоквенция — этап словесного оформления подготовленного материала.",
+          "На этом этапе автор выбирает языковые средства и форму выражения.",
+          "Правильный ответ — второй вариант."
+        ]
+      }
+    }
+  },
+
+  {
+    type:"question",
+    q:{
+      id:31,
+      answer:"B",
+
+      question:{
+        ru:"Выберите верное определение этапа «акцио»."
+      },
+
+      options:[
+        {
+          ru:"запоминание основных положений текста речи"
+        },
+        {
+          ru:"авторское разыгрывание речи на публике"
+        },
+        {
+          ru:"расположение отобранного материала"
+        },
+        {
+          ru:"отбор содержания из источников для будущего выступления"
+        },
+        {
+          ru:"словесное выражение отобранного и скомпонованного материала"
+        }
+      ],
+
+      explain:{
+        ru:[
+          "Акцио — этап публичного произнесения и исполнения речи.",
+          "Он включает голос, интонацию, жесты и поведение выступающего.",
+          "Правильный ответ — «авторское разыгрывание речи на публике»."
+        ]
+      }
+    }
+  }
+];
+
+function renderAnalytical(){
+  const container = document.getElementById("analyticalQuestions");
+
+  const data = currentLang() === "kk"
+    ? analyticalKz
+    : analyticalRu;
+
+  container.innerHTML = data.map(item=>{
+    if(item.type === "text"){
+      return `
+        <div class="textBlock">
+          <h3>${t(item.title)}</h3>
+          <p>${t(item.text)}</p>
+        </div>
+      `;
+    }
+
+    return renderQuestion("analytical",item.q);
+  }).join("");
+}
+  const listening19Transcript = `
+  <p>
+    The Times, like Harvard University, is one of the country’s most elite
+    and exclusive institutions. That huge numbers of people at The Times,
+    as at Harvard, buy into this institutional hubris makes the paper,
+    where I spent 15 years, thankfully, as a foreign correspondent a few
+    thousand miles from the newsroom — a fear-ridden and oppressive place to work.
+  </p>
+
+  <p>
+    The Times newsroom, like most corporate nerve centers, is a labyrinth
+    of intrigue, gossip, back-biting, rumor, false piety, rampant ambition,
+    betrayal and deception. Those who play this game well are repugnant.
+    They are also usually the people who run the place.
+  </p>
+
+  <p>
+    You live in perpetual fear of what those in authority think of you
+    and might do to you. This mechanism of internalized control —
+    for you always need them more than they need you — is effective.
+  </p>
+
+  <p>
+    Careerists pay lip service to the stated ideals of the institution,
+    which are couched in lofty rhetoric about balance, impartiality and
+    neutrality, but astutely grasp the actual guiding principle of the paper,
+    which is:
+  </p>
+
+  <p>
+    “Do not significantly alienate the corporate and political power elite
+    on whom the institution depends for access and money.”
+  </p>
+`;
+
+const listening19Translation = {
+  kk:`
+    <p>
+      The Times газеті Гарвард университеті сияқты елдегі ең беделді әрі
+      жабық мекемелердің бірі. The Times қызметкерлерінің өте көп бөлігі,
+      Гарвардтағыдай, осы мекеменің асқақ беделіне сенеді. Соның салдарынан
+      мен 15 жыл жұмыс істеген бұл газет редакциядан бірнеше мың шақырым
+      қашықтықта шетелдік тілші болғаныма шүкір ететіндей, қорқынышқа толы
+      және қысым көрсететін жұмыс орнына айналған.
+    </p>
+
+    <p>
+      The Times редакциясы көптеген ірі ұйымдардың басқару орталықтары
+      сияқты өсек, ғайбат, сыртынан жамандау, қауесет, жалған тақуалық,
+      шектен шыққан мансапқорлық, сатқындық және алдау араласқан күрделі орта.
+      Мұндай ойынды жақсы ойнайтын адамдар жиіркенішті болады.
+      Әдетте мекемені басқаратындар да солар.
+    </p>
+
+    <p>
+      Сіз үнемі басшылықтағы адамдардың сіз туралы не ойлайтынын және
+      сізге не істеуі мүмкін екенін уайымдап өмір сүресіз. Ішкі бақылаудың
+      бұл механизмі тиімді, себебі сіз оларға олар сізге мұқтаж болғаннан
+      көбірек мұқтажсыз.
+    </p>
+
+    <p>
+      Мансапқорлар мекеменің тепе-теңдік, бейтараптық және әділдік туралы
+      асқақ сөздермен берілген ресми қағидаларын сырттай қолдайды.
+      Бірақ олар газеттің шынайы басшылық қағидасын жақсы түсінеді:
+    </p>
+
+    <p>
+      «Мекеменің ақпарат пен ақша алуына мүмкіндік беретін корпоративтік
+      және саяси билік өкілдерін елеулі түрде өзіңе қарсы қойма».
+    </p>
+  `,
+
+  ru:`
+    <p>
+      The Times, как и Гарвардский университет, является одним из самых
+      элитных и закрытых учреждений страны. Огромное количество сотрудников
+      The Times, подобно людям в Гарварде, разделяет высокомерную веру
+      в особый статус этого учреждения. Поэтому газета, в которой я проработал
+      15 лет, была наполненным страхом и давлением местом работы.
+      К счастью, я находился за несколько тысяч миль от редакции,
+      работая иностранным корреспондентом.
+    </p>
+
+    <p>
+      Редакция The Times, как и большинство центров управления крупных
+      организаций, представляет собой лабиринт интриг, сплетен, злословия,
+      слухов, ложного благочестия, чрезмерного честолюбия, предательства
+      и обмана. Люди, которые хорошо играют в эту игру, отвратительны.
+      Обычно именно они и управляют этим местом.
+    </p>
+
+    <p>
+      Вы живёте в постоянном страхе перед тем, что думают о вас люди,
+      обладающие властью, и что они могут с вами сделать. Этот механизм
+      внутреннего контроля эффективен, поскольку вы всегда нуждаетесь
+      в них больше, чем они нуждаются в вас.
+    </p>
+
+    <p>
+      Карьеристы на словах поддерживают провозглашённые идеалы учреждения,
+      выраженные в возвышенной риторике о балансе, беспристрастности
+      и нейтральности. Однако они хорошо понимают настоящий руководящий
+      принцип газеты:
+    </p>
+
+    <p>
+      «Не следует серьёзно отталкивать корпоративную и политическую элиту,
+      от которой учреждение зависит в получении доступа и денег».
+    </p>
+  `
+};
+
+const listening19Vocabulary = [
+  {
+    en:"elite",
+    kk:"беделді, таңдаулы",
+    ru:"элитный, избранный"
+  },
+  {
+    en:"exclusive institution",
+    kk:"жабық әрі таңдаулы мекеме",
+    ru:"закрытое и привилегированное учреждение"
+  },
+  {
+    en:"institutional hubris",
+    kk:"мекеменің шектен шыққан менмендігі",
+    ru:"чрезмерное высокомерие учреждения"
+  },
+  {
+    en:"foreign correspondent",
+    kk:"шетелдік тілші",
+    ru:"иностранный корреспондент"
+  },
+  {
+    en:"fear-ridden",
+    kk:"қорқынышқа толы",
+    ru:"наполненный страхом"
+  },
+  {
+    en:"oppressive",
+    kk:"қысым көрсететін",
+    ru:"угнетающий, подавляющий"
+  },
+  {
+    en:"newsroom",
+    kk:"редакция",
+    ru:"редакция"
+  },
+  {
+    en:"intrigue",
+    kk:"интрига, жасырын әрекет",
+    ru:"интрига"
+  },
+  {
+    en:"back-biting",
+    kk:"сыртынан жамандау",
+    ru:"злословие за спиной"
+  },
+  {
+    en:"rampant ambition",
+    kk:"шектен шыққан мансапқорлық",
+    ru:"необузданное честолюбие"
+  },
+  {
+    en:"betrayal",
+    kk:"сатқындық",
+    ru:"предательство"
+  },
+  {
+    en:"repugnant",
+    kk:"жиіркенішті",
+    ru:"отвратительный"
+  },
+  {
+    en:"perpetual fear",
+    kk:"үздіксіз қорқыныш",
+    ru:"постоянный страх"
+  },
+  {
+    en:"internalized control",
+    kk:"ішкі бақылау",
+    ru:"внутренний контроль"
+  },
+  {
+    en:"pay lip service",
+    kk:"сөз жүзінде қолдау",
+    ru:"поддерживать только на словах"
+  },
+  {
+    en:"impartiality",
+    kk:"әділдік, алаламау",
+    ru:"беспристрастность"
+  },
+  {
+    en:"neutrality",
+    kk:"бейтараптық",
+    ru:"нейтральность"
+  },
+  {
+    en:"alienate",
+    kk:"өзінен алыстату, қарсы қою",
+    ru:"отталкивать, отчуждать"
+  }
+];
+
+const listening20Transcript = `
+  <p>
+    Change your bed sheets once a week, keep pans near the cooker,
+    and never wash white clothes with dark ones.
+  </p>
+
+  <p>
+    That is just some of the advice you can find on a popular new internet
+    site designed to help recently divorced Portuguese men do the housework
+    which their wives always did for them when they were married.
+  </p>
+
+  <p>
+    According to a recent study, married men in Portugal do less work around
+    the house than in any other European Union country. Thousands of men
+    are having to iron their clothes and make dinner for the first time
+    in their lives.
+  </p>
+
+  <p>
+    Many of these newly divorced men have turned to the website, called
+    Vida-On, for advice on what for them were “women’s worries”.
+    On the website they can find out which bathroom cleaner works best
+    or how to clean a stain from a white shirt.
+  </p>
+`;
+
+const listening20Translation = {
+  kk:`
+    <p>
+      Төсек жаймаларын аптасына бір рет ауыстырыңыз, табаларды пештің жанында
+      ұстаңыз және ақ киімдерді қара түсті киімдермен бірге жумаңыз.
+    </p>
+
+    <p>
+      Бұл — жақында ажырасқан португалиялық ер адамдарға үй шаруасын
+      орындауға көмектесетін танымал жаңа интернет-сайттан табуға болатын
+      кеңестердің бір бөлігі. Олар үйленген кезде бұл жұмыстардың барлығын
+      әйелдері атқаратын.
+    </p>
+
+    <p>
+      Жақында жүргізілген зерттеуге сәйкес, Португалиядағы үйленген ер адамдар
+      Еуропалық Одақтың басқа елдеріндегі ер адамдарға қарағанда үй жұмысын
+      азырақ орындайды. Мыңдаған ер адам өмірінде алғаш рет киімдерін үтіктеп,
+      кешкі ас дайындауға мәжбүр.
+    </p>
+
+    <p>
+      Жақында ажырасқан көптеген ер адам өздері бұрын «әйелдердің уайымы»
+      деп есептеген мәселелер бойынша кеңес алу үшін Vida-On деп аталатын
+      сайтқа жүгінген. Сайттан ванна бөлмесіне арналған қандай тазартқыштың
+      жақсы жұмыс істейтінін немесе ақ жейдедегі дақты қалай кетіру керектігін
+      білуге болады.
+    </p>
+  `,
+
+  ru:`
+    <p>
+      Меняйте постельное бельё раз в неделю, держите сковороды рядом с плитой
+      и никогда не стирайте белую одежду вместе с тёмной.
+    </p>
+
+    <p>
+      Это лишь некоторые советы, которые можно найти на популярном новом
+      интернет-сайте. Он создан для того, чтобы помогать недавно разведённым
+      португальским мужчинам выполнять домашнюю работу, которую во время
+      брака за них всегда делали жёны.
+    </p>
+
+    <p>
+      Согласно недавнему исследованию, женатые мужчины в Португалии выполняют
+      меньше работы по дому, чем мужчины в любой другой стране Европейского
+      союза. Тысячам мужчин впервые в жизни приходится гладить одежду
+      и готовить ужин.
+    </p>
+
+    <p>
+      Многие из этих недавно разведённых мужчин обратились к сайту Vida-On
+      за советами по вопросам, которые раньше они считали «женскими заботами».
+      На сайте они могут узнать, какое средство лучше всего очищает ванную
+      комнату или как удалить пятно с белой рубашки.
+    </p>
+  `
+};
+
+const listening20Vocabulary = [
+  {
+    en:"bed sheets",
+    kk:"төсек жаймалары",
+    ru:"постельное бельё"
+  },
+  {
+    en:"once a week",
+    kk:"аптасына бір рет",
+    ru:"один раз в неделю"
+  },
+  {
+    en:"pan",
+    kk:"таба",
+    ru:"сковорода"
+  },
+  {
+    en:"cooker",
+    kk:"пеш",
+    ru:"плита"
+  },
+  {
+    en:"recently divorced",
+    kk:"жақында ажырасқан",
+    ru:"недавно разведённый"
+  },
+  {
+    en:"housework",
+    kk:"үй шаруасы",
+    ru:"домашняя работа"
+  },
+  {
+    en:"according to",
+    kk:"сәйкес",
+    ru:"согласно"
+  },
+  {
+    en:"European Union",
+    kk:"Еуропалық Одақ",
+    ru:"Европейский союз"
+  },
+  {
+    en:"iron clothes",
+    kk:"киім үтіктеу",
+    ru:"гладить одежду"
+  },
+  {
+    en:"make dinner",
+    kk:"кешкі ас дайындау",
+    ru:"готовить ужин"
+  },
+  {
+    en:"turn to a website",
+    kk:"сайтқа жүгіну",
+    ru:"обратиться к сайту"
+  },
+  {
+    en:"advice",
+    kk:"кеңес",
+    ru:"совет"
+  },
+  {
+    en:"women’s worries",
+    kk:"әйелдердің уайымы",
+    ru:"женские заботы"
+  },
+  {
+    en:"bathroom cleaner",
+    kk:"ванна бөлмесін тазартқыш",
+    ru:"средство для чистки ванной"
+  },
+  {
+    en:"stain",
+    kk:"дақ",
+    ru:"пятно"
+  },
+  {
+    en:"white shirt",
+    kk:"ақ жейде",
+    ru:"белая рубашка"
+  }
+];
+
+const listeningQuestions = [
+  {
+    id:1,
+    answer:"C",
+
+    question:{
+      kk:"The mechanism of internalized control ______.",
+      ru:"The mechanism of internalized control ______."
+    },
+
+    options:[
+      {
+        kk:"is effective sometimes",
+        ru:"is effective sometimes"
+      },
+      {
+        kk:"is always effective",
+        ru:"is always effective"
+      },
+      {
+        kk:"is effective when you want some promotion",
+        ru:"is effective when you want some promotion"
+      },
+      {
+        kk:"is never effective",
+        ru:"is never effective"
+      }
+    ],
+
+    explain:{
+      kk:[
+        "Сұрақтың аудармасы: Ішкі бақылау механизмі ______.",
+        "Жауап кестесі бойынша дұрыс жауап — «is effective when you want some promotion».",
+        "Promotion — қызметтің жоғарылауы."
+      ],
+
+      ru:[
+        "Перевод вопроса: Механизм внутреннего контроля ______.",
+        "По таблице ответов правильный вариант — «is effective when you want some promotion».",
+        "Promotion означает повышение по службе."
+      ]
+    }
+  },
+
+  {
+    id:2,
+    answer:"A",
+
+    question:{
+      kk:"As the speaker says, the people who ______ are repugnant.",
+      ru:"As the speaker says, the people who ______ are repugnant."
+    },
+
+    options:[
+      {
+        kk:"run the place",
+        ru:"run the place"
+      },
+      {
+        kk:"was a correspondent",
+        ru:"was a correspondent"
+      },
+      {
+        kk:"are against their policy",
+        ru:"are against their policy"
+      },
+      {
+        kk:"was an editor",
+        ru:"was an editor"
+      }
+    ],
+
+    explain:{
+      kk:[
+        "Сұрақтың аудармасы: Сөйлеушінің айтуынша, мекемені ______ адамдар жиіркенішті.",
+        "Мәтінде: «They are also usually the people who run the place».",
+        "Run the place — мекемені басқару."
+      ],
+
+      ru:[
+        "Перевод вопроса: По словам говорящего, отвратительны люди, которые ______.",
+        "В тексте сказано: «They are also usually the people who run the place».",
+        "Run the place — управлять этим местом."
+      ]
+    }
+  },
+
+  {
+    id:3,
+    answer:"D",
+
+    question:{
+      kk:"You live in ______ what those in authority think of you.",
+      ru:"You live in ______ what those in authority think of you."
+    },
+
+    options:[
+      {
+        kk:"temporary awe",
+        ru:"temporary awe"
+      },
+      {
+        kk:"fortunate mood",
+        ru:"fortunate mood"
+      },
+      {
+        kk:"impermanent terror",
+        ru:"impermanent terror"
+      },
+      {
+        kk:"permanent terror",
+        ru:"permanent terror"
+      }
+    ],
+
+    explain:{
+      kk:[
+        "Сұрақтың аудармасы: Биліктегі адамдардың сіз туралы не ойлайтынына байланысты сіз тұрақты қорқынышта өмір сүресіз.",
+        "Мәтіндегі «perpetual fear» мағынасы «permanent terror» нұсқасына сәйкес келеді.",
+        "Permanent terror — тұрақты қорқыныш."
+      ],
+
+      ru:[
+        "Перевод вопроса: Вы живёте в постоянном страхе из-за того, что думают о вас люди, обладающие властью.",
+        "Выражение «perpetual fear» по смыслу соответствует варианту «permanent terror».",
+        "Permanent terror — постоянный страх."
+      ]
+    }
+  },
+
+  {
+    id:4,
+    answer:"A",
+
+    question:{
+      kk:"The mechanism which helps to control you is ______.",
+      ru:"The mechanism which helps to control you is ______."
+    },
+
+    options:[
+      {
+        kk:"internalized control",
+        ru:"internalized control"
+      },
+      {
+        kk:"ineffective control",
+        ru:"ineffective control"
+      },
+      {
+        kk:"discontrol mechanism",
+        ru:"discontrol mechanism"
+      },
+      {
+        kk:"control",
+        ru:"control"
+      }
+    ],
+
+    explain:{
+      kk:[
+        "Сұрақтың аудармасы: Сізді бақылауға көмектесетін механизм — ______.",
+        "Мәтінде бұл механизм «internalized control» деп аталған.",
+        "Internalized control — ішкі бақылау."
+      ],
+
+      ru:[
+        "Перевод вопроса: Механизм, который помогает контролировать вас, — это ______.",
+        "В тексте этот механизм назван «internalized control».",
+        "Internalized control — внутренний контроль."
+      ]
+    }
+  },
+
+  {
+    id:5,
+    answer:"B",
+
+    question:{
+      kk:"______ pay lip service to the stated ideals of the institution.",
+      ru:"______ pay lip service to the stated ideals of the institution."
+    },
+
+    options:[
+      {
+        kk:"Editors",
+        ru:"Editors"
+      },
+      {
+        kk:"Careerists",
+        ru:"Careerists"
+      },
+      {
+        kk:"Journalists",
+        ru:"Journalists"
+      },
+      {
+        kk:"Correspondent",
+        ru:"Correspondent"
+      }
+    ],
+
+    explain:{
+      kk:[
+        "Сұрақтың аудармасы: ______ мекеменің жарияланған мұраттарын сөз жүзінде қолдайды.",
+        "Мәтінде: «Careerists pay lip service to the stated ideals of the institution».",
+        "Careerists — мансапқорлар."
+      ],
+
+      ru:[
+        "Перевод вопроса: ______ только на словах поддерживают провозглашённые идеалы учреждения.",
+        "В тексте сказано: «Careerists pay lip service to the stated ideals of the institution».",
+        "Careerists — карьеристы."
+      ]
+    }
+  },
+
+  {
+    id:6,
+    answer:"D",
+
+    question:{
+      kk:"Except balance and impartiality, the main stated rule at The Times is ______.",
+      ru:"Except balance and impartiality, the main stated rule at The Times is ______."
+    },
+
+    options:[
+      {
+        kk:"liability",
+        ru:"liability"
+      },
+      {
+        kk:"politeness",
+        ru:"politeness"
+      },
+      {
+        kk:"neutrality",
+        ru:"neutrality"
+      },
+      {
+        kk:"corporate",
+        ru:"corporate"
+      }
+    ],
+
+    explain:{
+      kk:[
+        "Сұрақтың аудармасы: Тепе-теңдік пен әділдіктен басқа, The Times газетінде жарияланған негізгі қағида — ______.",
+        "Ресми жауап кестесінде D нұсқасы көрсетілген.",
+        "Corporate — корпоративтік."
+      ],
+
+      ru:[
+        "Перевод вопроса: Помимо баланса и беспристрастности, заявленным принципом The Times является ______.",
+        "В официальной таблице ответов указан вариант D.",
+        "Corporate — корпоративный."
+      ]
+    }
+  },
+
+  {
+    id:7,
+    answer:"B",
+
+    question:{
+      kk:"The Times is described as an ______ place to work.",
+      ru:"The Times is described as an ______ place to work."
+    },
+
+    options:[
+      {
+        kk:"Harvardian",
+        ru:"Harvardian"
+      },
+      {
+        kk:"oppressive",
+        ru:"oppressive"
+      },
+      {
+        kk:"foreign",
+        ru:"foreign"
+      },
+      {
+        kk:"strange",
+        ru:"strange"
+      }
+    ],
+
+    explain:{
+      kk:[
+        "Сұрақтың аудармасы: The Times жұмыс істеу үшін ______ орын ретінде сипатталған.",
+        "Мәтінде «a fear-ridden and oppressive place to work» делінген.",
+        "Oppressive — қысым көрсететін, ауыр."
+      ],
+
+      ru:[
+        "Перевод вопроса: The Times описывается как ______ место для работы.",
+        "В тексте сказано: «a fear-ridden and oppressive place to work».",
+        "Oppressive — угнетающий, подавляющий."
+      ]
+    }
+  },
+
+  {
+    id:8,
+    answer:"D",
+
+    question:{
+      kk:"The speaker thinks the Times newsroom is full of ______.",
+      ru:"The speaker thinks the Times newsroom is full of ______."
+    },
+
+    options:[
+      {
+        kk:"sadness",
+        ru:"sadness"
+      },
+      {
+        kk:"energy",
+        ru:"energy"
+      },
+      {
+        kk:"humor",
+        ru:"humor"
+      },
+      {
+        kk:"intrigue",
+        ru:"intrigue"
+      }
+    ],
+
+    explain:{
+      kk:[
+        "Сұрақтың аудармасы: Сөйлеуші The Times редакциясы ______ толы деп санайды.",
+        "Мәтінде редакция «a labyrinth of intrigue» деп сипатталған.",
+        "Intrigue — интрига, жасырын әрекет."
+      ],
+
+      ru:[
+        "Перевод вопроса: Говорящий считает, что редакция The Times наполнена ______.",
+        "В тексте редакция названа «a labyrinth of intrigue».",
+        "Intrigue — интрига."
+      ]
+    }
+  },
+
+  {
+    id:9,
+    answer:"A",
+
+    question:{
+      kk:"The article gives the advice to help recently divorced Portuguese men to do ______.",
+      ru:"The article gives the advice to help recently divorced Portuguese men to do ______."
+    },
+
+    options:[
+      {
+        kk:"housework",
+        ru:"housework"
+      },
+      {
+        kk:"sport",
+        ru:"sport"
+      },
+      {
+        kk:"morning exercises",
+        ru:"morning exercises"
+      },
+      {
+        kk:"washing-up",
+        ru:"washing-up"
+      }
+    ],
+
+    explain:{
+      kk:[
+        "Сұрақтың аудармасы: Мақала жақында ажырасқан португалиялық ер адамдарға ______ орындауға көмектесетін кеңес береді.",
+        "Мәтінде сайттың ер адамдарға «do the housework» көмектесетіні айтылған.",
+        "Housework — үй шаруасы."
+      ],
+
+      ru:[
+        "Перевод вопроса: В статье даются советы, помогающие недавно разведённым португальским мужчинам выполнять ______.",
+        "В тексте сказано, что сайт помогает мужчинам «do the housework».",
+        "Housework — домашняя работа."
+      ]
+    }
+  },
+
+  {
+    id:10,
+    answer:"B",
+
+    question:{
+      kk:"On the website they can find out how to clean a stain from a white ______.",
+      ru:"On the website they can find out how to clean a stain from a white ______."
+    },
+
+    options:[
+      {
+        kk:"skirt",
+        ru:"skirt"
+      },
+      {
+        kk:"shirt",
+        ru:"shirt"
+      },
+      {
+        kk:"trousers",
+        ru:"trousers"
+      },
+      {
+        kk:"cap",
+        ru:"cap"
+      }
+    ],
+
+    explain:{
+      kk:[
+        "Сұрақтың аудармасы: Сайттан ақ ______ дақты қалай кетіруге болатынын білуге болады.",
+        "Мәтінде «how to clean a stain from a white shirt» делінген.",
+        "Shirt — жейде."
+      ],
+
+      ru:[
+        "Перевод вопроса: На сайте можно узнать, как удалить пятно с белой ______.",
+        "В тексте сказано: «how to clean a stain from a white shirt».",
+        "Shirt — рубашка."
+      ]
+    }
+  },
+
+  {
+    id:11,
+    answer:"C",
+
+    question:{
+      kk:"Thousands of men have to iron their ______.",
+      ru:"Thousands of men have to iron their ______."
+    },
+
+    options:[
+      {
+        kk:"shirt",
+        ru:"shirt"
+      },
+      {
+        kk:"trousers",
+        ru:"trousers"
+      },
+      {
+        kk:"clothes",
+        ru:"clothes"
+      },
+      {
+        kk:"wives",
+        ru:"wives"
+      }
+    ],
+
+    explain:{
+      kk:[
+        "Сұрақтың аудармасы: Мыңдаған ер адам өз ______ үтіктеуге мәжбүр.",
+        "Мәтінде: «Thousands of men are having to iron their clothes».",
+        "Clothes — киімдер."
+      ],
+
+      ru:[
+        "Перевод вопроса: Тысячам мужчин приходится гладить свою ______.",
+        "В тексте сказано: «Thousands of men are having to iron their clothes».",
+        "Clothes — одежда."
+      ]
+    }
+  },
+
+  {
+    id:12,
+    answer:"B",
+
+    question:{
+      kk:"According to the text you should ______ your bed sheets once a week.",
+      ru:"According to the text you should ______ your bed sheets once a week."
+    },
+
+    options:[
+      {
+        kk:"get",
+        ru:"get"
+      },
+      {
+        kk:"change",
+        ru:"change"
+      },
+      {
+        kk:"buy",
+        ru:"buy"
+      },
+      {
+        kk:"wash",
+        ru:"wash"
+      }
+    ],
+
+    explain:{
+      kk:[
+        "Сұрақтың аудармасы: Мәтін бойынша төсек жаймаларын аптасына бір рет ______ керек.",
+        "Мәтін «Change your bed sheets once a week» сөйлемімен басталады.",
+        "Change — ауыстыру."
+      ],
+
+      ru:[
+        "Перевод вопроса: Согласно тексту, постельное бельё следует ______ раз в неделю.",
+        "Текст начинается предложением «Change your bed sheets once a week».",
+        "Change — менять."
+      ]
+    }
+  },
+
+  {
+    id:13,
+    answer:"A",
+
+    question:{
+      kk:"The article is telling about ______.",
+      ru:"The article is telling about ______."
+    },
+
+    options:[
+      {
+        kk:"divorced men",
+        ru:"divorced men"
+      },
+      {
+        kk:"divorced women",
+        ru:"divorced women"
+      },
+      {
+        kk:"children",
+        ru:"children"
+      },
+      {
+        kk:"European Union",
+        ru:"European Union"
+      }
+    ],
+
+    explain:{
+      kk:[
+        "Сұрақтың аудармасы: Мақала ______ туралы баяндайды.",
+        "Мәтін жақында ажырасқан ер адамдарға көмектесетін сайт туралы.",
+        "Divorced men — ажырасқан ер адамдар."
+      ],
+
+      ru:[
+        "Перевод вопроса: Статья рассказывает о ______.",
+        "Текст посвящён сайту, помогающему недавно разведённым мужчинам.",
+        "Divorced men — разведённые мужчины."
+      ]
+    }
+  },
+
+  {
+    id:14,
+    answer:"B",
+
+    question:{
+      kk:"The website is called ______.",
+      ru:"The website is called ______."
+    },
+
+    options:[
+      {
+        kk:"Portugal",
+        ru:"Portugal"
+      },
+      {
+        kk:"Vida-On",
+        ru:"Vida-On"
+      },
+      {
+        kk:"Oliveira",
+        ru:"Oliveira"
+      },
+      {
+        kk:"European Union",
+        ru:"European Union"
+      }
+    ],
+
+    explain:{
+      kk:[
+        "Сұрақтың аудармасы: Сайт ______ деп аталады.",
+        "Мәтінде: «the website, called Vida-On».",
+        "Дұрыс жауап — Vida-On."
+      ],
+
+      ru:[
+        "Перевод вопроса: Сайт называется ______.",
+        "В тексте сказано: «the website, called Vida-On».",
+        "Правильный ответ — Vida-On."
+      ]
+    }
+  },
+
+  {
+    id:15,
+    answer:"D",
+
+    question:{
+      kk:"Besides housework tips the site helps to ______.",
+      ru:"Besides housework tips the site helps to ______."
+    },
+
+    options:[
+      {
+        kk:"find a partner",
+        ru:"find a partner"
+      },
+      {
+        kk:"get a job",
+        ru:"get a job"
+      },
+      {
+        kk:"make bed",
+        ru:"make bed"
+      },
+      {
+        kk:"start to date again",
+        ru:"start to date again"
+      }
+    ],
+
+    explain:{
+      kk:[
+        "Сұрақтың аудармасы: Үй шаруасына қатысты кеңестерден басқа, сайт ______ көмектеседі.",
+        "Ресми жауап кестесінде D нұсқасы көрсетілген.",
+        "Start to date again — қайтадан кездесуге кірісу."
+      ],
+
+      ru:[
+        "Перевод вопроса: Помимо советов по домашней работе, сайт помогает ______.",
+        "В официальной таблице ответов указан вариант D.",
+        "Start to date again — снова начать ходить на свидания."
+      ]
+    }
+  },
+
+  {
+    id:16,
+    answer:"C",
+
+    question:{
+      kk:"According to the text men in ______ do less work around the house than in any other European Union country.",
+      ru:"According to the text men in ______ do less work around the house than in any other European Union country."
+    },
+
+    options:[
+      {
+        kk:"Europe",
+        ru:"Europe"
+      },
+      {
+        kk:"Germany",
+        ru:"Germany"
+      },
+      {
+        kk:"Portugal",
+        ru:"Portugal"
+      },
+      {
+        kk:"Kazakhstan",
+        ru:"Kazakhstan"
+      }
+    ],
+
+    explain:{
+      kk:[
+        "Сұрақтың аудармасы: Мәтін бойынша ______ ер адамдар Еуропалық Одақтың басқа елдеріндегі ер адамдарға қарағанда үй жұмысын азырақ орындайды.",
+        "Мәтінде «married men in Portugal do less work around the house» делінген.",
+        "Дұрыс жауап — Portugal."
+      ],
+
+      ru:[
+        "Перевод вопроса: Согласно тексту, мужчины в ______ выполняют меньше домашней работы, чем в любой другой стране Европейского союза.",
+        "В тексте сказано: «married men in Portugal do less work around the house».",
+        "Правильный ответ — Portugal."
+      ]
+    }
+  }
+];
+
+function renderVocabulary(items){
+  return `
+    <div class="vocabGrid">
+      ${items.map(item=>`
+        <div class="vocabItem">
+          <b>${item.en}</b><br>
+          ${currentLang() === "kk" ? item.kk : item.ru}
+        </div>
+      `).join("")}
+    </div>
+  `;
+}
+
+function listeningAudioBlock(config){
+  return `
+    <div class="audioBox">
+      <h3>${config.title}</h3>
+
+      <audio controls preload="metadata">
+        <source src="${config.audio}" type="audio/mpeg">
+      </audio>
+
+      <div class="tabs">
+        <button
+          class="tab active"
+          type="button"
+          onclick="openTab('${config.base}','test',this)"
+        >
+          Test
+        </button>
+
+        <button
+          class="tab"
+          type="button"
+          onclick="openTab('${config.base}','transcript',this)"
+        >
+          Transcript
+        </button>
+
+        <button
+          class="tab"
+          type="button"
+          onclick="openTab('${config.base}','translation',this)"
+        >
+          <span class="kk">Аударма</span>
+          <span class="ru">Перевод</span>
+        </button>
+
+        <button
+          class="tab"
+          type="button"
+          onclick="openTab('${config.base}','vocabulary',this)"
+        >
+          Vocabulary
+        </button>
+      </div>
+
+      <div
+        class="tabContent active"
+        data-tab-group="${config.base}"
+        data-tab-panel="test"
+      >
+        ${config.questions
+          .map(question=>renderQuestion("englishListening",question))
+          .join("")}
+      </div>
+
+      <div
+        class="tabContent"
+        data-tab-group="${config.base}"
+        data-tab-panel="transcript"
+      >
+        ${config.transcript}
+      </div>
+
+      <div
+        class="tabContent"
+        data-tab-group="${config.base}"
+        data-tab-panel="translation"
+      >
+        ${t(config.translation)}
+      </div>
+
+      <div
+        class="tabContent"
+        data-tab-group="${config.base}"
+        data-tab-panel="vocabulary"
+      >
+        ${renderVocabulary(config.vocabulary)}
+      </div>
+    </div>
+  `;
+}
+
+function renderListeningCard(){
+  const text19Questions = listeningQuestions.filter(
+    question=>question.id >= 1 && question.id <= 8
+  );
+
+  const text20Questions = listeningQuestions.filter(
+    question=>question.id >= 9 && question.id <= 16
+  );
+
+  return `
+    <div class="card" data-test="englishListening">
+      <h3>Listening 1–16</h3>
+
+      ${listeningAudioBlock({
+        base:"listening19",
+        title:"Text 19 · Questions 1–8",
+        audio:"./TEXT 19 - АУДИО.mp3",
+        transcript:listening19Transcript,
+        translation:listening19Translation,
+        vocabulary:listening19Vocabulary,
+        questions:text19Questions
+      })}
+
+      ${listeningAudioBlock({
+        base:"listening20",
+        title:"Text 20 · Questions 9–16",
+        audio:"./TEXT 20 - АУДИО.mp3",
+        transcript:listening20Transcript,
+        translation:listening20Translation,
+        vocabulary:listening20Vocabulary,
+        questions:text20Questions
+      })}
+
+      <div class="actions">
+        <button
+          class="btn"
+          type="button"
+          onclick="checkTest('englishListening')"
+        >
+          <span class="kk">Нәтижені көрсету</span>
+          <span class="ru">Показать результат</span>
+        </button>
+
+        <button
+          class="btn secondary"
+          type="button"
+          onclick="resetTest('englishListening')"
+        >
+          <span class="kk">Қайта өту</span>
+          <span class="ru">Пройти заново</span>
+        </button>
+      </div>
+
+      <div class="result" id="englishListeningResult"></div>
+    </div>
+  `;
+}
+  const grammarQuestions = [
+  {
+    id:17,
+    answer:"D",
+
+    question:
+      "Yesterday evening I went to a restaurant ______ some friends of mine.",
+
+    options:[
+      "to",
+      "by",
+      "for",
+      "with"
+    ],
+
+    explain:{
+      kk:[
+        "Сөйлемнің аудармасы: Кеше кешке мен бірнеше досыммен бірге мейрамханаға бардым.",
+        "Адаммен бірге әрекет жасау кезінде with қолданылады.",
+        "Дұрыс сөйлем: I went to a restaurant with some friends of mine."
+      ],
+
+      ru:[
+        "Перевод: Вчера вечером я пошёл в ресторан с несколькими своими друзьями.",
+        "Предлог with используется в значении «вместе с кем-либо».",
+        "Правильное предложение: I went to a restaurant with some friends of mine."
+      ]
+    }
+  },
+
+  {
+    id:18,
+    answer:"D",
+
+    question:
+      "Choose Present Perfect Tense vs. Past Simple Tense: He ______ there since he was a child.",
+
+    options:[
+      "living",
+      "lived",
+      "lives",
+      "'s lived"
+    ],
+
+    explain:{
+      kk:[
+        "Сөйлемнің аудармасы: Ол бала кезінен бері сол жерде тұрады.",
+        "Since he was a child әрекеттің өткенде басталып, қазіргі уақытқа дейін жалғасатынын көрсетеді.",
+        "Present Perfect қолданылады: He has lived there.",
+        "He's lived — He has lived қысқартылған түрі."
+      ],
+
+      ru:[
+        "Перевод: Он живёт там с детства.",
+        "Since he was a child показывает, что действие началось в прошлом и продолжается до настоящего времени.",
+        "Используется Present Perfect: He has lived there.",
+        "He's lived — сокращённая форма He has lived."
+      ]
+    }
+  },
+
+  {
+    id:19,
+    answer:"B",
+
+    question:
+      "If need ______ I will come to see you in New York.",
+
+    options:[
+      "is",
+      "be",
+      "are",
+      "being"
+    ],
+
+    explain:{
+      kk:[
+        "Сөйлемнің аудармасы: Қажет болса, мен сізбен кездесу үшін Нью-Йоркке келемін.",
+        "If need be — «қажет болса» деген тұрақты тіркес.",
+        "Дұрыс жауап — be."
+      ],
+
+      ru:[
+        "Перевод: Если потребуется, я приеду повидаться с вами в Нью-Йорк.",
+        "If need be — устойчивое выражение со значением «если потребуется».",
+        "Правильный ответ — be."
+      ]
+    }
+  },
+
+  {
+    id:20,
+    answer:"C",
+
+    question:
+      "I am ______ that you haven't won the prize.",
+
+    options:[
+      "depressing",
+      "exciting",
+      "astonished",
+      "surprising"
+    ],
+
+    explain:{
+      kk:[
+        "Сөйлемнің аудармасы: Сіздің жүлде алмағаныңызға мен таңғалдым.",
+        "Адамның сезімін білдіру үшін -ed жалғаулы сын есім қолданылады.",
+        "Astonished — таңғалған.",
+        "Дұрыс жауап — astonished."
+      ],
+
+      ru:[
+        "Перевод: Я удивлён, что вы не выиграли приз.",
+        "Для описания чувства человека используется прилагательное с окончанием -ed.",
+        "Astonished — удивлённый, поражённый.",
+        "Правильный ответ — astonished."
+      ]
+    }
+  },
+
+  {
+    id:21,
+    answer:"A",
+
+    question:
+      "2.27% is:",
+
+    options:[
+      "two point two seven per cent",
+      "two point two seven",
+      "two and two seven per cent",
+      "two per cent two seven"
+    ],
+
+    explain:{
+      kk:[
+        "Ондық бөлшектегі нүкте point деп оқылады.",
+        "Нүктеден кейінгі сандар жеке-жеке айтылады: two seven.",
+        "% белгісі per cent деп оқылады.",
+        "Дұрыс нұсқа: two point two seven per cent."
+      ],
+
+      ru:[
+        "Десятичная точка читается как point.",
+        "Цифры после точки произносятся отдельно: two seven.",
+        "Знак % читается как per cent.",
+        "Правильный вариант: two point two seven per cent."
+      ]
+    }
+  },
+
+  {
+    id:22,
+    answer:"A",
+
+    question:
+      "You've done ______ work than I have.",
+
+    options:[
+      "more",
+      "the most",
+      "much",
+      "many"
+    ],
+
+    explain:{
+      kk:[
+        "Сөйлемнің аудармасы: Сіз маған қарағанда көбірек жұмыс орындадыңыз.",
+        "Than салыстыруды көрсетеді.",
+        "Much сөзінің салыстырмалы шырайы — more.",
+        "Дұрыс жауап — more."
+      ],
+
+      ru:[
+        "Перевод: Вы выполнили больше работы, чем я.",
+        "Слово than указывает на сравнение.",
+        "Сравнительная степень слова much — more.",
+        "Правильный ответ — more."
+      ]
+    }
+  },
+
+  {
+    id:23,
+    answer:"B",
+
+    question:
+      "I'm ______ sorry to tell you that we have no more tickets.",
+
+    options:[
+      "awful",
+      "terribly",
+      "enough",
+      "remarkably"
+    ],
+
+    explain:{
+      kk:[
+        "Сөйлемнің аудармасы: Билеттердің қалмағанын айтуыма өте өкінішті.",
+        "Sorry сын есімін күшейту үшін үстеу қажет.",
+        "Terribly sorry — «өте өкінішті» деген тұрақты тіркес.",
+        "Дұрыс жауап — terribly."
+      ],
+
+      ru:[
+        "Перевод: Мне очень жаль сообщать вам, что билетов больше нет.",
+        "Перед прилагательным sorry требуется наречие.",
+        "Terribly sorry — устойчивое сочетание со значением «очень жаль».",
+        "Правильный ответ — terribly."
+      ]
+    }
+  },
+
+  {
+    id:24,
+    answer:"C",
+
+    question:
+      "Find the sentence in the Subjunctive Mood.",
+
+    options:[
+      "Show your work on math test.",
+      "We must go to the bank today.",
+      "If only I could go home.",
+      "He lives most of the year in Spam but returns regularly to visit his ailing mother."
+    ],
+
+    explain:{
+      kk:[
+        "Сұрақтың аудармасы: Шартты райдағы сөйлемді табыңыз.",
+        "If only құрылымы орындалмаған тілек немесе өкінішті білдіреді.",
+        "If only I could go home — «Үйге бара алсам ғой».",
+        "Дұрыс жауап — үшінші нұсқа."
+      ],
+
+      ru:[
+        "Перевод вопроса: Найдите предложение в сослагательном наклонении.",
+        "Конструкция If only выражает желание или сожаление о нереальной ситуации.",
+        "If only I could go home — «Если бы только я мог пойти домой».",
+        "Правильный ответ — третий вариант."
+      ]
+    }
+  },
+
+  {
+    id:25,
+    answer:"B",
+
+    question:
+      "Cheating is forbidden at the university in spite of the fact he admitted ______ on the test.",
+
+    options:[
+      "to cheating",
+      "cheating",
+      "to cheat",
+      "is cheating"
+    ],
+
+    explain:{
+      kk:[
+        "Сөйлемнің аудармасы: Университетте көшіруге тыйым салынғанына қарамастан, ол тестте көшіргенін мойындады.",
+        "Admit етістігінен кейін герундий, яғни verb + ing қолданылады.",
+        "Admit cheating — көшіргенін мойындау.",
+        "Дұрыс жауап — cheating."
+      ],
+
+      ru:[
+        "Перевод: Несмотря на то что списывание запрещено в университете, он признался, что списывал на тесте.",
+        "После глагола admit используется герундий: verb + ing.",
+        "Admit cheating — признаться в списывании.",
+        "Правильный ответ — cheating."
+      ]
+    }
+  },
+
+  {
+    id:26,
+    answer:"C",
+
+    question:
+      "She permitted the children ______ up late.",
+
+    options:[
+      "stay",
+      "stayed",
+      "to stay",
+      "are staying"
+    ],
+
+    explain:{
+      kk:[
+        "Сөйлемнің аудармасы: Ол балаларға кешке дейін ұйықтамай отыруға рұқсат берді.",
+        "Permit somebody to do something құрылымы қолданылады.",
+        "Permitted the children to stay.",
+        "Дұрыс жауап — to stay."
+      ],
+
+      ru:[
+        "Перевод: Она разрешила детям не ложиться допоздна.",
+        "Используется конструкция permit somebody to do something.",
+        "Permitted the children to stay.",
+        "Правильный ответ — to stay."
+      ]
+    }
+  },
+
+  {
+    id:27,
+    answer:"C",
+
+    question:
+      "Wangari Maathai from Africa ______ the Nobel Peace Prize in 2004.",
+
+    options:[
+      "has awarded",
+      "has been awarded",
+      "was awarded",
+      "is awarded"
+    ],
+
+    explain:{
+      kk:[
+        "Сөйлемнің аудармасы: Африкалық Вангари Маатаи 2004 жылы Нобель бейбітшілік сыйлығымен марапатталды.",
+        "2004 жылы — өткен шақтағы нақты уақыт.",
+        "Сыйлықты басқа адамдар бергендіктен Passive Voice қажет.",
+        "Past Simple Passive: was awarded."
+      ],
+
+      ru:[
+        "Перевод: Вангари Маатаи из Африки была награждена Нобелевской премией мира в 2004 году.",
+        "2004 год является конкретным временем в прошлом.",
+        "Поскольку премию присудили ей, требуется страдательный залог.",
+        "Past Simple Passive: was awarded."
+      ]
+    }
+  },
+
+  {
+    id:28,
+    answer:"B",
+
+    question:
+      "That's an excellent opportunity for you. The word \"opportunity\" in this sentence can be replaced with the synonym ______.",
+
+    options:[
+      "answer",
+      "chance",
+      "step",
+      "news"
+    ],
+
+    explain:{
+      kk:[
+        "Сөйлемнің аудармасы: Бұл сіз үшін тамаша мүмкіндік.",
+        "Opportunity — мүмкіндік.",
+        "Chance сөзінің мағынасы да «мүмкіндік».",
+        "Дұрыс жауап — chance."
+      ],
+
+      ru:[
+        "Перевод: Это прекрасная возможность для вас.",
+        "Opportunity означает «возможность».",
+        "Близкий синоним — chance.",
+        "Правильный ответ — chance."
+      ]
+    }
+  },
+
+  {
+    id:29,
+    answer:"C",
+
+    question:
+      "We were good friends. We ______ each other for years.",
+
+    options:[
+      "known",
+      "knew",
+      "have known",
+      "had known"
+    ],
+
+    explain:{
+      kk:[
+        "Сөйлемнің аудармасы: Біз жақсы достар едік. Біз бір-бірімізді көп жылдан бері білеміз.",
+        "For years әрекеттің ұзақ уақыт бойы жалғасқанын көрсетеді.",
+        "Ресми жауап кестесі бойынша Present Perfect қолданылады: have known.",
+        "Дұрыс жауап — have known."
+      ],
+
+      ru:[
+        "Перевод: Мы были хорошими друзьями. Мы знаем друг друга много лет.",
+        "For years указывает на продолжительный период времени.",
+        "Согласно официальному ключу используется Present Perfect: have known.",
+        "Правильный ответ — have known."
+      ]
+    }
+  },
+
+  {
+    id:30,
+    answer:"B",
+
+    question:
+      "Thanks for looking ______ me when I was ill.",
+
+    options:[
+      "to",
+      "after",
+      "at",
+      "with"
+    ],
+
+    explain:{
+      kk:[
+        "Сөйлемнің аудармасы: Мен ауырған кезде маған қарағаныңыз үшін рақмет.",
+        "Look after — біреуге қарау, қамқорлық жасау.",
+        "Дұрыс жауап — after."
+      ],
+
+      ru:[
+        "Перевод: Спасибо, что ухаживали за мной, когда я болел.",
+        "Look after означает «ухаживать, заботиться о ком-либо».",
+        "Правильный ответ — after."
+      ]
+    }
+  },
+
+  {
+    id:31,
+    answer:"D",
+
+    question:
+      "Helen is ______ clever person. She got all answers right.",
+
+    options:[
+      "such",
+      "such an",
+      "so",
+      "such a"
+    ],
+
+    explain:{
+      kk:[
+        "Сөйлемнің аудармасы: Хелен сондай ақылды адам. Ол барлық сұраққа дұрыс жауап берді.",
+        "Сын есім мен жекеше саналатын зат есімнің алдында such a қолданылады.",
+        "Clever person — дауыссыз дыбыстан басталатын тіркес.",
+        "Дұрыс нұсқа: such a clever person."
+      ],
+
+      ru:[
+        "Перевод: Хелен такой умный человек. Она правильно ответила на все вопросы.",
+        "Перед прилагательным и исчисляемым существительным в единственном числе используется such a.",
+        "Правильная конструкция: such a clever person."
+      ]
+    }
+  },
+
+  {
+    id:32,
+    answer:"D",
+
+    question:
+      "The normal working week is ______ Monday ______ Saturday.",
+
+    options:[
+      "from/since",
+      "till/till",
+      "on/on",
+      "from/to"
+    ],
+
+    explain:{
+      kk:[
+        "Сөйлемнің аудармасы: Қалыпты жұмыс аптасы дүйсенбіден сенбіге дейін.",
+        "Басталу және аяқталу аралығын көрсету үшін from ... to ... қолданылады.",
+        "Дұрыс нұсқа: from Monday to Saturday."
+      ],
+
+      ru:[
+        "Перевод: Обычная рабочая неделя длится с понедельника по субботу.",
+        "Для обозначения начальной и конечной точки используется конструкция from ... to ....",
+        "Правильный вариант: from Monday to Saturday."
+      ]
+    }
+  },
+
+  {
+    id:33,
+    answer:"C",
+
+    question:
+      "When did you get the new job? A month ago, after I ______ my exam.",
+
+    options:[
+      "was passing",
+      "was passed",
+      "passed",
+      "has passed"
+    ],
+
+    explain:{
+      kk:[
+        "Сөйлемнің аудармасы: Жаңа жұмысқа қашан орналастыңыз? Бір ай бұрын, емтиханымды тапсырғаннан кейін.",
+        "A month ago өткен шақтағы нақты уақытты білдіреді.",
+        "Емтиханды адамның өзі тапсырғандықтан Active Voice қажет.",
+        "Past Simple: passed."
+      ],
+
+      ru:[
+        "Перевод: Когда вы получили новую работу? Месяц назад, после того как я сдал экзамен.",
+        "A month ago указывает на конкретное время в прошлом.",
+        "Действие выполняет сам человек, поэтому нужен действительный залог.",
+        "Past Simple: passed."
+      ]
+    }
+  },
+
+  {
+    id:34,
+    answer:"D",
+
+    question:
+      "The influenza pandemic of 1918 killed millions of people at the end of War II.",
+
+    options:[
+      "ninety hundred and eighteen",
+      "one thousand and ninety hundred and eighteen",
+      "nine hundred and eighteen",
+      "nineteen eighteen"
+    ],
+
+    explain:{
+      kk:[
+        "Сұрақта 1918 жылдың ағылшын тілінде қалай айтылатыны тексеріледі.",
+        "Жылдарды айтқанда 1918 саны екі бөлікке бөлінеді: nineteen + eighteen.",
+        "Дұрыс жауап — nineteen eighteen."
+      ],
+
+      ru:[
+        "Вопрос проверяет правильное произношение года 1918.",
+        "Годы обычно произносятся двумя частями: nineteen + eighteen.",
+        "Правильный ответ — nineteen eighteen."
+      ]
+    }
+  }
+];
+
+function renderGrammarCard(){
+  return `
+    <div class="card" data-test="englishGrammar">
+      <h3>Grammar 17–34</h3>
+
+      <div id="grammarQuestions">
+        ${grammarQuestions
+          .map(question=>renderQuestion("englishGrammar",question))
+          .join("")}
+      </div>
+
+      <div class="actions">
+        <button
+          class="btn"
+          type="button"
+          onclick="checkTest('englishGrammar')"
+        >
+          <span class="kk">Нәтижені көрсету</span>
+          <span class="ru">Показать результат</span>
+        </button>
+
+        <button
+          class="btn secondary"
+          type="button"
+          onclick="resetTest('englishGrammar')"
+        >
+          <span class="kk">Қайта өту</span>
+          <span class="ru">Пройти заново</span>
+        </button>
+      </div>
+
+      <div class="result" id="englishGrammarResult"></div>
+    </div>
+  `;
+}
+  const reading19Text = `
+  <h3>Leonardo DiCaprio</h3>
+
+  <p>
+    Leonardo DiCaprio is a movie heart throb and award-winning Hollywood
+    actor. He shot to fame for his role in ‘Titanic’ in 1997. He has also
+    starred in many other successful movies. DiCaprio is known for his
+    environmentalist activities. He flies on commercial flights instead
+    of private jets and has an eco-friendly house. He has inspired other
+    celebrities to take up environmental causes.
+  </p>
+
+  <p>
+    DiCaprio is an only child and was born in Los Angeles in 1974.
+    He was named after Leonardo da Vinci because his pregnant mother
+    was looking at a da Vinci painting in Italy when her baby first kicked.
+    Leo's actor stepbrother inspired DiCaprio to take up acting.
+    He began looking for an agent when he was twelve but was unsuccessful.
+  </p>
+
+  <p>
+    DiCaprio started his career making TV commercials. His break came
+    in 1990 when he appeared in several shows. DiCaprio’s big breakthrough
+    came in 1993 when he starred opposite Robert de Niro in ‘The Boy’s Life’.
+    That same year he starred alongside Johnny Depp in ‘What’s Eating
+    Gilbert Grape’. He was 19 and his performance earned him an Academy
+    Award nomination.
+  </p>
+
+  <p>
+    DiCaprio’s career took off and he became a Hollywood star.
+    His status was elevated to superstar after he acted in ‘Titanic’,
+    which won 11 Oscars. He was the most searched for personality
+    on the Internet and his popularity was dubbed “Leo-mania”.
+    He said later he would “never reach that state of popularity again”.
+    Today, DiCaprio prefers to think of himself as an indie actor.
+  </p>
+`;
+
+const reading19Translation = {
+  kk:`
+    <h3>Леонардо ДиКаприо</h3>
+
+    <p>
+      Леонардо ДиКаприо — көрермендердің сүйіктісіне айналған және
+      марапаттарға ие болған Голливуд актері. Ол 1997 жылы «Титаник»
+      фильміндегі рөлінен кейін танымал болды. Сонымен қатар көптеген
+      басқа да сәтті фильмдерде ойнады. ДиКаприо қоршаған ортаны қорғауға
+      бағытталған қызметімен белгілі. Ол жеке ұшақтардың орнына
+      жолаушылар ұшақтарымен ұшады және экологиялық таза үйі бар.
+      Ол басқа танымал адамдарды да табиғатты қорғау ісіне қатысуға
+      ынталандырды.
+    </p>
+
+    <p>
+      ДиКаприо — отбасындағы жалғыз бала. Ол 1974 жылы Лос-Анджелесте
+      дүниеге келген. Анасы Италияда жүкті кезінде Леонардо да Винчидің
+      суретіне қарап тұрғанда сәбиі алғаш рет қозғалғандықтан, оған
+      Леонардо да Винчидің құрметіне ат қойылған. Актер болған өгей ағасы
+      ДиКаприоны актерлік өнермен айналысуға шабыттандырды.
+      Ол он екі жасында агент іздей бастады, бірақ бұл әрекеті сәтсіз болды.
+    </p>
+
+    <p>
+      ДиКаприо мансабын теледидарлық жарнамаларға түсуден бастады.
+      Оның алғашқы жетістігі 1990 жылы бірнеше бағдарламаға қатысқан кезде
+      келді. Үлкен жетістігі 1993 жылы «The Boy’s Life» фильмінде
+      Роберт де Ниромен бірге ойнаған кезде болды. Сол жылы ол
+      Джонни Депппен бірге «What’s Eating Gilbert Grape» фильмінде ойнады.
+      Ол 19 жаста еді және осы рөлі үшін «Оскар» сыйлығына ұсынылды.
+    </p>
+
+    <p>
+      ДиКаприоның мансабы қарқынды дамып, ол Голливуд жұлдызына айналды.
+      11 «Оскар» алған «Титаник» фильмінен кейін оның мәртебесі
+      супержұлдыз деңгейіне көтерілді. Ол интернетте ең көп ізделген
+      тұлға болды, ал оның танымалдығы «Leo-mania» деп аталды.
+      Кейін ол мұндай танымалдық деңгейіне енді ешқашан жете алмайтынын айтты.
+      Қазіргі уақытта ДиКаприо өзін тәуелсіз фильмдердің актері деп
+      санағанды жөн көреді.
+    </p>
+  `,
+
+  ru:`
+    <h3>Леонардо ДиКаприо</h3>
+
+    <p>
+      Леонардо ДиКаприо — популярный и отмеченный наградами голливудский
+      актёр. Он прославился благодаря роли в фильме «Титаник» в 1997 году.
+      Он также снялся во многих других успешных фильмах. ДиКаприо известен
+      своей природоохранной деятельностью. Он летает обычными пассажирскими
+      рейсами вместо частных самолётов и живёт в экологичном доме.
+      Он вдохновил и других знаменитостей заниматься защитой окружающей среды.
+    </p>
+
+    <p>
+      ДиКаприо — единственный ребёнок в семье. Он родился в Лос-Анджелесе
+      в 1974 году. Его назвали в честь Леонардо да Винчи, потому что,
+      когда его беременная мать рассматривала картину да Винчи в Италии,
+      ребёнок впервые толкнулся. Сводный брат Лео, который был актёром,
+      вдохновил ДиКаприо заняться актёрским мастерством. В двенадцать лет
+      он начал искать агента, однако его попытка оказалась неудачной.
+    </p>
+
+    <p>
+      ДиКаприо начал карьеру со съёмок в телевизионной рекламе.
+      Первый успех пришёл к нему в 1990 году, когда он появился в нескольких
+      передачах. Большой прорыв произошёл в 1993 году, когда он сыграл
+      вместе с Робертом де Ниро в фильме «The Boy’s Life».
+      В том же году он снялся вместе с Джонни Деппом в фильме
+      «What’s Eating Gilbert Grape». Ему было 19 лет, и эта роль принесла
+      ему номинацию на премию «Оскар».
+    </p>
+
+    <p>
+      Карьера ДиКаприо стремительно пошла вверх, и он стал голливудской
+      звездой. После роли в «Титанике», получившем 11 премий «Оскар»,
+      его статус поднялся до уровня суперзвезды. Он стал самой разыскиваемой
+      в интернете знаменитостью, а его популярность назвали «Leo-mania».
+      Позже он сказал, что уже никогда не достигнет такого уровня популярности.
+      Сегодня ДиКаприо предпочитает считать себя актёром независимого кино.
+    </p>
+  `
+};
+
+const reading19Vocabulary = [
+  {
+    en:"heart throb",
+    kk:"көпшілік сүйіктісі",
+    ru:"кумир публики"
+  },
+  {
+    en:"award-winning",
+    kk:"марапаттарға ие болған",
+    ru:"отмеченный наградами"
+  },
+  {
+    en:"shot to fame",
+    kk:"тез танымал болды",
+    ru:"быстро прославился"
+  },
+  {
+    en:"environmentalist activities",
+    kk:"табиғатты қорғау қызметі",
+    ru:"природоохранная деятельность"
+  },
+  {
+    en:"commercial flights",
+    kk:"жолаушылар рейстері",
+    ru:"коммерческие пассажирские рейсы"
+  },
+  {
+    en:"private jets",
+    kk:"жеке ұшақтар",
+    ru:"частные самолёты"
+  },
+  {
+    en:"eco-friendly",
+    kk:"экологиялық таза",
+    ru:"экологичный"
+  },
+  {
+    en:"environmental causes",
+    kk:"табиғатты қорғау ісі",
+    ru:"защита окружающей среды"
+  },
+  {
+    en:"only child",
+    kk:"отбасындағы жалғыз бала",
+    ru:"единственный ребёнок в семье"
+  },
+  {
+    en:"stepbrother",
+    kk:"өгей аға немесе іні",
+    ru:"сводный брат"
+  },
+  {
+    en:"take up acting",
+    kk:"актерлікпен айналыса бастау",
+    ru:"заняться актёрским мастерством"
+  },
+  {
+    en:"commercials",
+    kk:"жарнамалық бейнероликтер",
+    ru:"рекламные ролики"
+  },
+  {
+    en:"breakthrough",
+    kk:"үлкен жетістік",
+    ru:"прорыв"
+  },
+  {
+    en:"starred opposite",
+    kk:"басты рөлде бірге ойнады",
+    ru:"сыграл вместе с"
+  },
+  {
+    en:"earned a nomination",
+    kk:"номинацияға ие болды",
+    ru:"заслужил номинацию"
+  },
+  {
+    en:"career took off",
+    kk:"мансабы қарқынды дамыды",
+    ru:"карьера стремительно пошла вверх"
+  },
+  {
+    en:"dubbed",
+    kk:"деп аталды",
+    ru:"было названо"
+  },
+  {
+    en:"indie actor",
+    kk:"тәуелсіз кино актері",
+    ru:"актёр независимого кино"
+  }
+];
+
+const reading20Text = `
+  <h3>Canada</h3>
+
+  <p>
+    Canada is the second biggest country in the world, second only to Russia.
+    In fact, Canada is bigger than the entire European Union put together!
+  </p>
+
+  <p>
+    There are many interesting facts about Canada, some may surprise you!
+    The country is called “The Great White North!”
+  </p>
+
+  <p>
+    Canada has ten provinces and three territories. It also has six time zones!
+  </p>
+
+  <p>
+    Its capital city is Ottawa. Ottawa is in the province of Ontario.
+    It has a population of 36 million people. This is small compared
+    to other countries. It is also small considering its large size!
+  </p>
+
+  <p>
+    Over 80% of the population live near the United States border.
+    The Canadian and US border is the largest border in the world.
+    Over 30% of the country is a forest. And Canada has 10% of the world's
+    forests! Canada also has more lake areas than any other country in the world.
+  </p>
+
+  <p>
+    Canada is a very young country. Canada became a country only in 1867.
+    The country celebrated its 150th birthday in July 2017.
+    July 1st is the Canada Day.
+  </p>
+
+  <p>
+    People all across the country celebrate by wearing red and white.
+    Red and white are the national colours shown on its flag.
+  </p>
+
+  <p>
+    Canada was first discovered by the French explorer, Jacques Cartier
+    in 1534. Of course, people had been living in Canada long before that.
+  </p>
+
+  <p>
+    Canada's national animal is a beaver! And it has two national languages,
+    both English and French. But only two provinces are officially French
+    speaking, Quebec and New Brunswick.
+  </p>
+
+  <p>
+    Canada is still strongly tied to the country of England. Like Australia,
+    Canada celebrates the Queen of England as their Queen too!
+  </p>
+`;
+
+const reading20Translation = {
+  kk:`
+    <h3>Канада</h3>
+
+    <p>
+      Канада — әлемдегі көлемі жағынан екінші үлкен мемлекет.
+      Ол тек Ресейден кейін тұр. Шын мәнінде, Канада бүкіл Еуропалық Одақ
+      елдерінің жалпы аумағынан да үлкен.
+    </p>
+
+    <p>
+      Канада туралы көптеген қызықты дерек бар және олардың кейбірі
+      сізді таңғалдыруы мүмкін. Бұл елді «Ұлы Ақ Солтүстік» деп атайды.
+    </p>
+
+    <p>
+      Канадада он провинция және үш аумақ бар. Сонымен қатар ел
+      алты уақыт белдеуінде орналасқан.
+    </p>
+
+    <p>
+      Астанасы — Оттава қаласы. Оттава Онтарио провинциясында орналасқан.
+      Ел халқының саны 36 миллион адам. Басқа мемлекеттермен салыстырғанда
+      бұл аз көрсеткіш. Ел аумағының өте үлкен екенін ескерсек,
+      халық саны одан да аз болып көрінеді.
+    </p>
+
+    <p>
+      Халықтың 80 пайыздан астамы Америка Құрама Штаттарының шекарасына
+      жақын жерде тұрады. Канада мен АҚШ арасындағы шекара — әлемдегі
+      ең ұзын шекара. Ел аумағының 30 пайыздан астамын орман алып жатыр.
+      Әлемдегі ормандардың 10 пайызы Канадада орналасқан.
+      Сонымен қатар Канадада басқа елдердің барлығына қарағанда
+      көлді аумақтар көп.
+    </p>
+
+    <p>
+      Канада — өте жас мемлекет. Ол тек 1867 жылы мемлекет болды.
+      2017 жылғы шілдеде ел өзінің 150 жылдығын атап өтті.
+      1 шілде — Канада күні.
+    </p>
+
+    <p>
+      Елдің барлық аймағындағы адамдар қызыл және ақ түсті киімдер киіп,
+      мерекені атап өтеді. Қызыл және ақ — Канада туында бейнеленген
+      ұлттық түстер.
+    </p>
+
+    <p>
+      Канаданы 1534 жылы француз зерттеушісі Жак Картье алғаш ашқан.
+      Әрине, адамдар Канада жерінде бұдан әлдеқайда бұрын өмір сүрген.
+    </p>
+
+    <p>
+      Канаданың ұлттық жануары — құндыз. Елдің екі мемлекеттік тілі бар:
+      ағылшын және француз тілдері. Бірақ Квебек пен Нью-Брансуик
+      провинциялары ғана ресми түрде француз тілінде сөйлейді.
+    </p>
+
+    <p>
+      Канада әлі де Англиямен тығыз байланысты. Аустралия сияқты,
+      Канада да Англия патшайымын өз патшайымы ретінде мойындайды.
+    </p>
+  `,
+
+  ru:`
+    <h3>Канада</h3>
+
+    <p>
+      Канада — вторая по площади страна в мире после России.
+      На самом деле Канада больше, чем все страны Европейского союза,
+      вместе взятые.
+    </p>
+
+    <p>
+      О Канаде существует много интересных фактов, и некоторые из них
+      могут вас удивить. Страну называют «Великим Белым Севером».
+    </p>
+
+    <p>
+      Канада состоит из десяти провинций и трёх территорий.
+      Она также расположена в шести часовых поясах.
+    </p>
+
+    <p>
+      Её столица — Оттава. Оттава находится в провинции Онтарио.
+      Население страны составляет 36 миллионов человек.
+      По сравнению с другими странами это немного.
+      Если учитывать огромные размеры Канады, её население кажется
+      ещё более малочисленным.
+    </p>
+
+    <p>
+      Более 80 процентов населения живёт рядом с границей Соединённых Штатов.
+      Граница между Канадой и США является самой длинной в мире.
+      Более 30 процентов территории страны покрыто лесом.
+      В Канаде находится 10 процентов всех лесов мира.
+      В ней также больше озёрных территорий, чем в любой другой стране мира.
+    </p>
+
+    <p>
+      Канада — очень молодая страна. Государством она стала только в 1867 году.
+      В июле 2017 года страна отпраздновала своё 150-летие.
+      1 июля отмечается День Канады.
+    </p>
+
+    <p>
+      Жители всей страны отмечают праздник, надевая одежду красного
+      и белого цветов. Красный и белый являются национальными цветами,
+      изображёнными на флаге.
+    </p>
+
+    <p>
+      Канада была впервые открыта французским исследователем Жаком Картье
+      в 1534 году. Разумеется, люди жили на территории Канады
+      задолго до этого.
+    </p>
+
+    <p>
+      Национальным животным Канады является бобр.
+      В стране два государственных языка: английский и французский.
+      Однако официально франкоязычными являются только две провинции:
+      Квебек и Нью-Брансуик.
+    </p>
+
+    <p>
+      Канада по-прежнему тесно связана с Англией.
+      Подобно Австралии, Канада также признаёт королеву Англии
+      своей королевой.
+    </p>
+  `
+};
+
+const reading20Vocabulary = [
+  {
+    en:"second biggest country",
+    kk:"көлемі жағынан екінші үлкен мемлекет",
+    ru:"вторая по площади страна"
+  },
+  {
+    en:"put together",
+    kk:"барлығын бірге алғанда",
+    ru:"вместе взятые"
+  },
+  {
+    en:"The Great White North",
+    kk:"Ұлы Ақ Солтүстік",
+    ru:"Великий Белый Север"
+  },
+  {
+    en:"province",
+    kk:"провинция",
+    ru:"провинция"
+  },
+  {
+    en:"territory",
+    kk:"аумақ",
+    ru:"территория"
+  },
+  {
+    en:"time zone",
+    kk:"уақыт белдеуі",
+    ru:"часовой пояс"
+  },
+  {
+    en:"capital city",
+    kk:"астана",
+    ru:"столица"
+  },
+  {
+    en:"population",
+    kk:"халық саны",
+    ru:"население"
+  },
+  {
+    en:"considering",
+    kk:"ескергенде",
+    ru:"учитывая"
+  },
+  {
+    en:"border",
+    kk:"шекара",
+    ru:"граница"
+  },
+  {
+    en:"forest",
+    kk:"орман",
+    ru:"лес"
+  },
+  {
+    en:"lake areas",
+    kk:"көлді аумақтар",
+    ru:"озёрные территории"
+  },
+  {
+    en:"celebrated",
+    kk:"атап өтті",
+    ru:"отпраздновала"
+  },
+  {
+    en:"national colours",
+    kk:"ұлттық түстер",
+    ru:"национальные цвета"
+  },
+  {
+    en:"explorer",
+    kk:"зерттеуші",
+    ru:"исследователь"
+  },
+  {
+    en:"beaver",
+    kk:"құндыз",
+    ru:"бобр"
+  },
+  {
+    en:"French speaking",
+    kk:"француз тілінде сөйлейтін",
+    ru:"франкоязычный"
+  },
+  {
+    en:"strongly tied",
+    kk:"тығыз байланысты",
+    ru:"тесно связан"
+  }
+];
+
+const readingQuestions = [
+  {
+    id:35,
+    answer:"A",
+
+    question:"In 1997 his first film to fame was ______.",
+
+    options:[
+      "Titanic",
+      "The Boy’s Life",
+      "Robert de Niro",
+      "What’s Eating Gilbert Grape"
+    ],
+
+    explain:{
+      kk:[
+        "Сұрақтың аудармасы: 1997 жылы оны танымал еткен алғашқы фильм ______ болды.",
+        "Мәтінде: «He shot to fame for his role in ‘Titanic’ in 1997».",
+        "Дұрыс жауап — Titanic."
+      ],
+
+      ru:[
+        "Перевод: Фильмом, который принёс ему известность в 1997 году, был ______.",
+        "В тексте сказано: «He shot to fame for his role in ‘Titanic’ in 1997».",
+        "Правильный ответ — Titanic."
+      ]
+    }
+  },
+
+  {
+    id:36,
+    answer:"A",
+
+    question:"He took an Academy Award nomination when he was ______.",
+
+    options:[
+      "nineteen",
+      "twenty",
+      "ninety",
+      "twelve"
+    ],
+
+    explain:{
+      kk:[
+        "Сұрақтың аудармасы: Ол «Оскар» сыйлығына ұсынылғанда ______ жаста болды.",
+        "Мәтінде: «He was 19 and his performance earned him an Academy Award nomination».",
+        "Дұрыс жауап — nineteen."
+      ],
+
+      ru:[
+        "Перевод: Когда он получил номинацию на премию «Оскар», ему было ______.",
+        "В тексте сказано: «He was 19 and his performance earned him an Academy Award nomination».",
+        "Правильный ответ — nineteen."
+      ]
+    }
+  },
+
+  {
+    id:37,
+    answer:"A",
+
+    question:
+      "The stepbrother tried to find an agent for DiCaprio but it didn’t ______.",
+
+    options:[
+      "successful results",
+      "interesting ideas",
+      "unsuccessful help",
+      "unsuccessful career"
+    ],
+
+    explain:{
+      kk:[
+        "Сұрақтың аудармасы: Өгей ағасы ДиКаприоға агент табуға тырысты, бірақ бұл ______.",
+        "Мәтінде агент іздеу әрекетінің сәтсіз болғаны айтылған.",
+        "Ресми кесте бойынша дұрыс жауап — successful results."
+      ],
+
+      ru:[
+        "Перевод: Сводный брат пытался найти ДиКаприо агента, но это не принесло ______.",
+        "В тексте говорится, что попытка найти агента была неудачной.",
+        "По официальной таблице правильный ответ — successful results."
+      ]
+    }
+  },
+
+  {
+    id:38,
+    answer:"B",
+
+    question:"His ______ tried to find an agent for DiCaprio.",
+
+    options:[
+      "director",
+      "stepbrother",
+      "mother",
+      "father"
+    ],
+
+    explain:{
+      kk:[
+        "Сұрақтың аудармасы: ДиКаприоға агент табуға оның ______ тырысты.",
+        "Мәтінде оның актер болған өгей ағасы ДиКаприоны актерлікке шабыттандырғаны айтылған.",
+        "Дұрыс жауап — stepbrother."
+      ],
+
+      ru:[
+        "Перевод: Найти агента для ДиКаприо пытался его ______.",
+        "В тексте упоминается его сводный брат-актёр.",
+        "Правильный ответ — stepbrother."
+      ]
+    }
+  },
+
+  {
+    id:39,
+    answer:"C",
+
+    question:"His name was given by ______ in Italy.",
+
+    options:[
+      "Robert de Niro",
+      "his father",
+      "his mother",
+      "Da Vinci"
+    ],
+
+    explain:{
+      kk:[
+        "Сұрақтың аудармасы: Италияда оған есімді ______ қойған.",
+        "Анасы да Винчидің суретіне қарап тұрғанда сәби алғаш қозғалған.",
+        "Сондықтан Леонардо есімін оның анасы қойған.",
+        "Дұрыс жауап — his mother."
+      ],
+
+      ru:[
+        "Перевод: Имя в Италии ему дала ______.",
+        "Его мать рассматривала картину да Винчи, когда ребёнок впервые толкнулся.",
+        "Поэтому имя Леонардо дала ему мать.",
+        "Правильный ответ — his mother."
+      ]
+    }
+  },
+
+  {
+    id:40,
+    answer:"B",
+
+    question:
+      "The stepbrother tried to find an ______ for DiCaprio but it was unsuccessful.",
+
+    options:[
+      "aunt",
+      "agent",
+      "actor",
+      "artist"
+    ],
+
+    explain:{
+      kk:[
+        "Сұрақтың аудармасы: Өгей ағасы ДиКаприоға ______ табуға тырысты, бірақ әрекеті сәтсіз болды.",
+        "Мәтінде ДиКаприоның агент іздей бастағаны жазылған.",
+        "Agent — актерге жұмыс табуға көмектесетін агент.",
+        "Дұрыс жауап — agent."
+      ],
+
+      ru:[
+        "Перевод: Сводный брат пытался найти для ДиКаприо ______, но попытка оказалась неудачной.",
+        "В тексте говорится, что ДиКаприо начал искать агента.",
+        "Правильный ответ — agent."
+      ]
+    }
+  },
+
+  {
+    id:41,
+    answer:"C",
+
+    question:
+      "In 1993 DiCaprio and Jonny Depp were ______ in ‘What’s Eating Gilbert Grape’.",
+
+    options:[
+      "called",
+      "eco-friendly house",
+      "the main characters",
+      "formed"
+    ],
+
+    explain:{
+      kk:[
+        "Сұрақтың аудармасы: 1993 жылы ДиКаприо мен Джонни Депп «What’s Eating Gilbert Grape» фильмінде ______ болды.",
+        "Екі актер фильмде басты кейіпкерлерді сомдады.",
+        "Дұрыс жауап — the main characters."
+      ],
+
+      ru:[
+        "Перевод: В 1993 году ДиКаприо и Джонни Депп были ______ в фильме «What’s Eating Gilbert Grape».",
+        "Оба актёра исполняли главные роли.",
+        "Правильный ответ — the main characters."
+      ]
+    }
+  },
+
+  {
+    id:42,
+    answer:"C",
+
+    question:
+      "DiCaprio’s big development came in ______ when he starred opposite Robert de Niro in ‘The Boy’s Life’.",
+
+    options:[
+      "1991",
+      "1992",
+      "1993",
+      "1990"
+    ],
+
+    explain:{
+      kk:[
+        "Сұрақтың аудармасы: ДиКаприоның үлкен жетістігі Роберт де Ниромен бірге «The Boy’s Life» фильмінде ойнаған ______ жылы болды.",
+        "Мәтінде үлкен жетістік 1993 жылы келгені жазылған.",
+        "Дұрыс жауап — 1993."
+      ],
+
+      ru:[
+        "Перевод: Большой прорыв ДиКаприо произошёл в ______ году, когда он сыграл вместе с Робертом де Ниро в фильме «The Boy’s Life».",
+        "В тексте указан 1993 год.",
+        "Правильный ответ — 1993."
+      ]
+    }
+  },
+
+  {
+    id:43,
+    answer:"B",
+
+    question:
+      "Canada is also called \"The Great White ______!\"",
+
+    options:[
+      "Beaver",
+      "North",
+      "Forest",
+      "Bear"
+    ],
+
+    explain:{
+      kk:[
+        "Сұрақтың аудармасы: Канаданы «Ұлы Ақ ______» деп те атайды.",
+        "Мәтінде: «The country is called “The Great White North!”».",
+        "Дұрыс жауап — North."
+      ],
+
+      ru:[
+        "Перевод: Канаду также называют «Великим Белым ______».",
+        "В тексте сказано: «The country is called “The Great White North!”».",
+        "Правильный ответ — North."
+      ]
+    }
+  },
+
+  {
+    id:44,
+    answer:"D",
+
+    question:
+      "According to the text, over 80% of the Canadian population ______ the United States border.",
+
+    options:[
+      "leave",
+      "move to",
+      "cross",
+      "live near"
+    ],
+
+    explain:{
+      kk:[
+        "Сұрақтың аудармасы: Мәтін бойынша Канада халқының 80 пайыздан астамы АҚШ шекарасына ______.",
+        "Мәтінде: «Over 80% of the population live near the United States border».",
+        "Дұрыс жауап — live near."
+      ],
+
+      ru:[
+        "Перевод: Согласно тексту, более 80 процентов населения Канады ______ границы США.",
+        "В тексте сказано: «Over 80% of the population live near the United States border».",
+        "Правильный ответ — live near."
+      ]
+    }
+  },
+
+  {
+    id:45,
+    answer:"A",
+
+    question:
+      "The capital of Canada is situated in the province of ______.",
+
+    options:[
+      "Ontario",
+      "New Brunswick",
+      "Brunswick",
+      "Quebec"
+    ],
+
+    explain:{
+      kk:[
+        "Сұрақтың аудармасы: Канаданың астанасы ______ провинциясында орналасқан.",
+        "Мәтінде Оттаваның Онтарио провинциясында орналасқаны айтылған.",
+        "Дұрыс жауап — Ontario."
+      ],
+
+      ru:[
+        "Перевод: Столица Канады расположена в провинции ______.",
+        "В тексте сказано, что Оттава находится в провинции Онтарио.",
+        "Правильный ответ — Ontario."
+      ]
+    }
+  },
+
+  {
+    id:46,
+    answer:"B",
+
+    question:
+      "The number that was not mentioned in the text is ______.",
+
+    options:[
+      "ten provinces",
+      "thirty-two million people",
+      "six time zones",
+      "eighty percent"
+    ],
+
+    explain:{
+      kk:[
+        "Сұрақтың аудармасы: Мәтінде қай сан айтылмаған?",
+        "Мәтінде 10 провинция, 6 уақыт белдеуі, 36 миллион халық және 80 пайыз көрсетілген.",
+        "32 миллион адам туралы айтылмаған.",
+        "Дұрыс жауап — thirty-two million people."
+      ],
+
+      ru:[
+        "Перевод: Какое число не упоминалось в тексте?",
+        "В тексте названы 10 провинций, 6 часовых поясов, 36 миллионов жителей и 80 процентов.",
+        "Число 32 миллиона не упоминалось.",
+        "Правильный ответ — thirty-two million people."
+      ]
+    }
+  },
+
+  {
+    id:47,
+    answer:"D",
+
+    question:
+      "Quebec and New Brunswick are ______.",
+
+    options:[
+      "two national languages",
+      "bigger than the entire European Union",
+      "tied to the country of England",
+      "French speaking provinces"
+    ],
+
+    explain:{
+      kk:[
+        "Сұрақтың аудармасы: Квебек пен Нью-Брансуик — ______.",
+        "Мәтінде осы екі провинцияның ресми түрде француз тілінде сөйлейтіні айтылған.",
+        "Дұрыс жауап — French speaking provinces."
+      ],
+
+      ru:[
+        "Перевод: Квебек и Нью-Брансуик являются ______.",
+        "В тексте сказано, что только эти две провинции официально являются франкоязычными.",
+        "Правильный ответ — French speaking provinces."
+      ]
+    }
+  },
+
+  {
+    id:48,
+    answer:"A",
+
+    question:
+      "Canada is a country of ______ that may surprise any person!",
+
+    options:[
+      "wonders",
+      "rules",
+      "birds",
+      "hills"
+    ],
+
+    explain:{
+      kk:[
+        "Сұрақтың аудармасы: Канада — кез келген адамды таңғалдыратын ______ елі.",
+        "Мәтінде Канада туралы көптеген таңғаларлық қызықты дерек берілген.",
+        "Ресми жауап кестесі бойынша дұрыс жауап — wonders.",
+        "Wonders — ғажайыптар."
+      ],
+
+      ru:[
+        "Перевод: Канада — страна ______, способных удивить любого человека.",
+        "В тексте приведено множество удивительных фактов о Канаде.",
+        "По официальному ключу правильный ответ — wonders.",
+        "Wonders — чудеса."
+      ]
+    }
+  },
+
+  {
+    id:49,
+    answer:"D",
+
+    question:
+      "The true statement referring to the text is ______.",
+
+    options:[
+      "Canada was first discovered by an Englishman in 1534",
+      "Jacques Cartier, the French discoverer of Canada, found it in 1543",
+      "Canada was first discovered by a Frenchman in 1534, who had lived there before",
+      "Jacques Cartier, the French discoverer of Canada, found it in 1534"
+    ],
+
+    explain:{
+      kk:[
+        "Сұрақтың аудармасы: Мәтінге сәйкес дұрыс тұжырымды табыңыз.",
+        "Мәтінде Канаданы француз зерттеушісі Жак Картье 1534 жылы ашқаны жазылған.",
+        "Дұрыс жауап — төртінші нұсқа."
+      ],
+
+      ru:[
+        "Перевод: Выберите верное утверждение, соответствующее тексту.",
+        "В тексте сказано, что французский исследователь Жак Картье открыл Канаду в 1534 году.",
+        "Правильный ответ — четвёртый вариант."
+      ]
+    }
+  },
+
+  {
+    id:50,
+    answer:"D",
+
+    question:
+      "The capital of Canada is situated in the province of Ontario. Its population is ______ million people.",
+
+    options:[
+      "thirty-seven",
+      "thirty-nine",
+      "thirty-four",
+      "thirty-six"
+    ],
+
+    explain:{
+      kk:[
+        "Сұрақтың аудармасы: Канаданың астанасы Онтарио провинциясында орналасқан. Ел халқының саны ______ миллион адам.",
+        "Мәтінде: «It has a population of 36 million people».",
+        "Дұрыс жауап — thirty-six."
+      ],
+
+      ru:[
+        "Перевод: Столица Канады расположена в провинции Онтарио. Население страны составляет ______ миллионов человек.",
+        "В тексте сказано: «It has a population of 36 million people».",
+        "Правильный ответ — thirty-six."
+      ]
+    }
+  }
+];
+
+function readingTextBlock(config){
+  return `
+    <div class="textBlock">
+      <h3>${config.title}</h3>
+
+      <div class="tabs">
+        <button
+          class="tab active"
+          type="button"
+          onclick="openTab('${config.base}','test',this)"
+        >
+          Test
+        </button>
+
+        <button
+          class="tab"
+          type="button"
+          onclick="openTab('${config.base}','text',this)"
+        >
+          Text
+        </button>
+
+        <button
+          class="tab"
+          type="button"
+          onclick="openTab('${config.base}','translation',this)"
+        >
+          <span class="kk">Аударма</span>
+          <span class="ru">Перевод</span>
+        </button>
+
+        <button
+          class="tab"
+          type="button"
+          onclick="openTab('${config.base}','vocabulary',this)"
+        >
+          Vocabulary
+        </button>
+      </div>
+
+      <div
+        class="tabContent active"
+        data-tab-group="${config.base}"
+        data-tab-panel="test"
+      >
+        ${config.questions
+          .map(question=>renderQuestion("englishReading",question))
+          .join("")}
+      </div>
+
+      <div
+        class="tabContent"
+        data-tab-group="${config.base}"
+        data-tab-panel="text"
+      >
+        ${config.text}
+      </div>
+
+      <div
+        class="tabContent"
+        data-tab-group="${config.base}"
+        data-tab-panel="translation"
+      >
+        ${t(config.translation)}
+      </div>
+
+      <div
+        class="tabContent"
+        data-tab-group="${config.base}"
+        data-tab-panel="vocabulary"
+      >
+        ${renderVocabulary(config.vocabulary)}
+      </div>
+    </div>
+  `;
+}
+
+function renderReadingCard(){
+  const text19Questions = readingQuestions.filter(
+    question=>question.id >= 35 && question.id <= 42
+  );
+
+  const text20Questions = readingQuestions.filter(
+    question=>question.id >= 43 && question.id <= 50
+  );
+
+  return `
+    <div class="card" data-test="englishReading">
+      <h3>Reading 35–50</h3>
+
+      ${readingTextBlock({
+        base:"reading19",
+        title:"Text 19 · Leonardo DiCaprio · Questions 35–42",
+        text:reading19Text,
+        translation:reading19Translation,
+        vocabulary:reading19Vocabulary,
+        questions:text19Questions
+      })}
+
+      ${readingTextBlock({
+        base:"reading20",
+        title:"Text 20 · Canada · Questions 43–50",
+        text:reading20Text,
+        translation:reading20Translation,
+        vocabulary:reading20Vocabulary,
+        questions:text20Questions
+      })}
+
+      <div class="actions">
+        <button
+          class="btn"
+          type="button"
+          onclick="checkTest('englishReading')"
+        >
+          <span class="kk">Нәтижені көрсету</span>
+          <span class="ru">Показать результат</span>
+        </button>
+
+        <button
+          class="btn secondary"
+          type="button"
+          onclick="resetTest('englishReading')"
+        >
+          <span class="kk">Қайта өту</span>
+          <span class="ru">Пройти заново</span>
+        </button>
+      </div>
+
+      <div class="result" id="englishReadingResult"></div>
+    </div>
+  `;
+}
+  function openTab(base,panel,button){
+  const parent = button.closest(".audioBox, .textBlock");
+
+  if(!parent){
+    return;
+  }
+
+  parent.querySelectorAll(
+    `.tabContent[data-tab-group="${base}"]`
+  ).forEach(content=>{
+    content.classList.toggle(
+      "active",
+      content.dataset.tabPanel === panel
+    );
+  });
+
+  parent.querySelectorAll(".tab").forEach(tab=>{
+    tab.classList.remove("active");
+  });
+
+  button.classList.add("active");
+}
+
+function captureSelections(){
+  const saved = {};
+
+  document.querySelectorAll(
+    '[data-test="critical"] .q, ' +
+    '[data-test="englishListening"] .q, ' +
+    '[data-test="englishGrammar"] .q, ' +
+    '[data-test="englishReading"] .q'
+  ).forEach(question=>{
+    const selected = question.querySelector("input:checked");
+
+    if(!selected){
+      return;
+    }
+
+    const testCard = question.closest("[data-test]");
+
+    if(!testCard){
+      return;
+    }
+
+    const key =
+      `${testCard.dataset.test}_${question.dataset.id}`;
+
+    saved[key] = selected.value;
+  });
+
+  return saved;
+}
+
+function restoreSelections(saved){
+  Object.entries(saved).forEach(([key,value])=>{
+    const separator = key.lastIndexOf("_");
+    const testKey = key.slice(0,separator);
+    const questionId = key.slice(separator + 1);
+
+    const question = document.querySelector(
+      `[data-test="${testKey}"] .q[data-id="${questionId}"]`
+    );
+
+    if(!question){
+      return;
+    }
+
+    const input = question.querySelector(
+      `input[value="${value}"]`
+    );
+
+    if(input){
+      input.checked = true;
+    }
+  });
+}
+
+function renderEnglish(){
+  const container = document.getElementById("englishBlock");
+
+  container.innerHTML = `
+    ${renderListeningCard()}
+    ${renderGrammarCard()}
+    ${renderReadingCard()}
+  `;
+}
+
+function rerenderAll(){
+  const savedSelections = captureSelections();
+
+  renderCritical();
+  renderAnalytical();
+  renderEnglish();
+
+  restoreSelections(savedSelections);
+}
+
+function setLang(lang){
+  document.body.classList.toggle(
+    "lang-kk",
+    lang === "kk"
+  );
+
+  document.body.classList.toggle(
+    "lang-ru",
+    lang === "ru"
+  );
+
+  document.documentElement.lang = lang;
+
+  document.querySelectorAll(".langBtn").forEach(button=>{
+    button.classList.toggle(
+      "active",
+      button.dataset.lang === lang
+    );
+  });
+
+  const warning = document.querySelector(".warning");
+
+  if(warning){
+    warning.textContent = lang === "kk"
+      ? "❌‼️ САТУҒА ЖӘНЕ ТАРАТУҒА БОЛМАЙДЫ. ТЕГІН САЙТ"
+      : "❌‼️ ПРОДАЖА И РАСПРОСТРАНЕНИЕ ЗАПРЕЩЕНЫ. БЕСПЛАТНЫЙ САЙТ";
+  }
+
+  Object.keys(state.scores).forEach(key=>{
+    state.scores[key] = null;
+  });
+
+  rerenderAll();
+}
+
+rerenderAll();
+</script>
+</body>
+</html>
